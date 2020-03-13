@@ -4,10 +4,17 @@ var path = require('path');
 
 
 // Database setup
-require('./db.js');
+require('./models/db.js');
+require('./config/passport.js');
+
+// Passport setup
+var passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+//app.use(flash());
 
 app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname, '/../INFO30005/homepage.html'));
+	res.sendFile(path.join(__dirname, '/../pages/homepage.html'));
 });
 
 // Start the server

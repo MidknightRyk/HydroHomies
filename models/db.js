@@ -16,3 +16,6 @@ mongoose.connect(dbURI, options).then(
  err => {
 	console.log('Error connecting Database instance due to: ', err);
 });
+
+// Initializes the schema for mongodb
+require('./user.js');

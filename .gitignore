@@ -1,0 +1,20 @@
+# exclude the following directories
+node_modules/
+uploads/
+
+# Don't track these files, used for heroku deployment
+Procfile
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.idea

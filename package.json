@@ -1,0 +1,26 @@
+{
+  "name": "hydrohomies",
+  "version": "1.0.0",
+  "description": "info30005 project",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MidknightRyk/HydroHomies.git"
+  },
+  "author": "HydroHomies INFO30005 2020",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MidknightRyk/HydroHomies/issues"
+  },
+  "homepage": "https://github.com/MidknightRyk/HydroHomies#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.4",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
+  }
+}
