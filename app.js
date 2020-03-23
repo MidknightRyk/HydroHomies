@@ -13,10 +13,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 //app.use(flash());
 
-app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname, '/../pages/homepage.html'));
-});
+var routes = require('./routes/routes.js');
 
+app.use('/', routes);
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {

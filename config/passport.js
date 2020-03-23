@@ -35,7 +35,7 @@ passport.serializeUser(function (user, done) {
 
 // Find user in the database
 passport.deserializeUser(function (id, done) {
-	User.getUserById(id, function (err, user) {
+	User.FindById(id, function (err, user) {
 		done(err, user);
 	});
 });
