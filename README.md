@@ -21,13 +21,13 @@ The app will also provide an interface for people to plan their journey while in
   </tr> 
   <tr>
     <td>6</td>
-    <td>Sunday, May 17 @5pm</td>
+    <td>Wednesday, Apr 29 @5pm</td>
     <td>Mockup App Server</td>
     <td>10%</td>
   </tr>
   <tr>
     <td>8</td>
-    <td>Wednesday, Apr 29 @5pm</td>
+    <td>Sunday, May 17 @5pm</td>
     <td>Front-End + API Server</td>
     <td>25%</td>
   </tr>
