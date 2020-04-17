@@ -20,19 +20,19 @@ The app will also provide an interface for people to plan their journey while in
     <td>5%</td>
   </tr> 
   <tr>
-    <td>6</td>
+    <td>7</td>
     <td>Wednesday, Apr 29 @5pm</td>
     <td>Mockup App Server</td>
     <td>10%</td>
   </tr>
   <tr>
-    <td>8</td>
+    <td>9</td>
     <td>Sunday, May 17 @5pm</td>
     <td>Front-End + API Server</td>
     <td>25%</td>
   </tr>
   <tr>
-    <td>11</td>  
+    <td>12</td>  
     <td>Sunday, Jun 7 @5pm</td> 
     <td>Report + System</td>  
     <td>20% + 40%</td> 
