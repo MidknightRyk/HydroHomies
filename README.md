@@ -1,1 +1,40 @@
 # HydroHomies
+
+<h2>Summary of the Proposal</h2>
+<p>The system that we intend to design is a web app that will not only show where the water fountains are on the given area of a map but direct you to either the closest one or one of your choice with GPS like interface. The web app will also include information about each water fountain such as: bottle refill option, accessibility, user reviews, timestamp of your last visit, etc. <br> <br>
+The app will also provide an interface for people to plan their journey while incorporating water fountain stops on the way. This will be helpful for people who would like to add a water stop in their plan for their day out. The final plan can also be shared to social media, friends, or various outlets, which can also work in part as a safety function to let people know where you'll be.
+</p>
+
+<h2>Marks Breakdown</h2>
+<table style="width:100%">
+  <tr>
+    <th>Due Week</th>
+    <th>Due Date</th>
+    <th>Deliverable</th>
+    <th>Weight</th>
+  </tr>
+  <tr> 
+    <td>4</td>
+    <td>Sunday, Apr 5 @5pm</td>
+    <td>Project Proposal</td>
+    <td>5%</td>
+  </tr> 
+  <tr>
+    <td>6</td>
+    <td>Sunday, May 17 @5pm</td>
+    <td>Mockup App Server</td>
+    <td>10%</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Wednesday, Apr 29 @5pm</td>
+    <td>Front-End + API Server</td>
+    <td>25%</td>
+  </tr>
+  <tr>
+    <td>11</td>  
+    <td>Sunday, Jun 7 @5pm</td> 
+    <td>Report + System</td>  
+    <td>20% + 40%</td> 
+  </tr>
+</table>
