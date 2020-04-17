@@ -22,7 +22,7 @@ The app will also provide an interface for people to plan their journey while in
   <tr>
     <td>7</td>
     <td>Wednesday, Apr 29 @5pm</td>
-    <td>Mockup App Server</td>
+    <td><a href="https://canvas.lms.unimelb.edu.au/courses/8135/quizzes/47512" target="_blank">Mockup App Server</a></td>
     <td>10%</td>
   </tr>
   <tr>
