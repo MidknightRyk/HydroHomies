@@ -2,6 +2,9 @@
 node_modules/
 uploads/
 
+# The following are no deployed for security purposes
+.env
+
 # Don't track these files, used for heroku deployment
 Procfile
 
