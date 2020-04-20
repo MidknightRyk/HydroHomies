@@ -3,7 +3,8 @@ var crypto = require('crypto');
 var defaultDP = mongoose.Types.ObjectId('5d85d612220b38000446b55c');
 var userSchema = mongoose.Schema(
 	{
-		name: String,
+		firstName: String,
+    lastName: String,
 		username: String,
 		email: String,
 		hash: String,
