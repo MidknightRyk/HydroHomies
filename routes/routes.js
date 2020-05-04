@@ -16,7 +16,7 @@ router.use('/fountain', fountain)
 // Get homepage
 router.get('/', function (req, res) {
   if (!req.session.user) {
-    res.sendFile(path.join(__dirname, '/../views/homepage/homepage.html'))
+    res.sendFile(path.join(__dirname, '/../views/homepage.html'))
   } else {
     // TODO: set up landing page after signin/login
     res.redirect('/main')
@@ -37,6 +37,5 @@ router.post('/logout', loginController.logout)
 
 // Register
 router.post('/register', loginController.register)
-
 
 module.exports = router

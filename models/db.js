@@ -1,12 +1,12 @@
 require('dotenv').config()
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 // copy from CONNECT (MongoDB Atlas)
 const dbURI =
-  'mongodb+srv://HydroHomies:<password>@hydrohomies-u3qcl.mongodb.net/test?retryWrites=true&w=majority';
+  'mongodb+srv://HydroHomies:<password>@hydrohomies-u3qcl.mongodb.net/test?retryWrites=true&w=majority'
 
 var dbURL =
-  dbURI.replace('<password>', process.env.MONGO_PASSWORD);
+  dbURI.replace('<password>', process.env.MONGO_PASSWORD)
 
 const options = {
   useNewUrlParser: true,
@@ -14,17 +14,17 @@ const options = {
   useUnifiedTopology: true,
   useFindAndModify: false,
   dbName: 'Databace'
-};
+}
 
 mongoose.connect(dbURL, options).then(
   () => {
-    console.log('Database connection established!');
+    console.log('Database connection established!')
   },
   err => {
-    console.log('Error connecting Database instance due to: ', err);
-  });
+    console.log('Error connecting Database instance due to: ', err)
+  })
 
 // Initializes the schema for mongodb
-require('./user.js');
-require('./image.js');
-require('./fountain.js');
+require('./user.js')
+require('./image.js')
+require('./fountain.js')

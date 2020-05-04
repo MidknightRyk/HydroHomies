@@ -1,12 +1,10 @@
 // Code for reset functionality adapted from:
 // http://sahatyalkabov.com/how-to-implement-password-reset-in-nodejs/
 
-var mongoose = require('mongoose');
-var path = require('path');
-var User = mongoose.model('User');
-var passport = require('passport');
-var async = require('async');
-var crypto = require('crypto');
+var mongoose = require('mongoose')
+var User = mongoose.model('User')
+var path = require('path')
+var passport = require('passport')
 
 // Registration function
 var register = function (req, res) {
@@ -16,66 +14,79 @@ var register = function (req, res) {
     email: req.body.email
   }).then(function (user) {
     if (user) {
-      req.flash('error', 'That user already exists!');
-      console.log('user exists');
-      return res.redirect('back');
+      req.flash('error', 'That user already exists!')
+      console.log('user exists')
+      return res.redirect('back')
     } else {
       // If username is not taken
       User.findOne({
         username: req.body.name
       }).then(function (name) {
         if (name) {
-          req.flash('error', 'Username taken!');
-          console.log('username taken');
-          return res.redirect('back');
+          req.flash('error', 'Username taken!')
+          console.log('username taken')
+          return res.redirect('back')
         } else {
           // Create new user and redirect to awaiting approval page
           var user = new User({
-            'name': req.body.name,
-            'username': req.body.username,
-            'email': req.body.email,
-            'approved': false,
-            'admin': false
-          });
-          user.setPassword(req.body.pwd);
+            username: req.body.username,
+            email: req.body.email
+          })
+          console.log(req.body)
+          user.setPassword(req.body.pwd)
           return user.save()
-            .then(() => res.redirect('/u'));
+            .then(() => res.redirect('/'))
         }
-      });
+      })
     }
-  });
-};
+  })
+}
 
 // Login function
 var login = function (req, res) {
   passport.authenticate('user', (err, user, info) => {
     if (err) {
-      console.log(err);
-      return res.redirect('/');
+      console.log(err)
+      return res.redirect('/')
     }
     if (user) {
       if (user.approved) {
         // Keep user id and name in session storage
-        req.session.user = user._id;
-        req.session.userName = user.name;
-        req.session.username = user.username;
+        req.session.user = user._id
+        req.session.userName = user.name
+        req.session.username = user.username
         // Set user type
-        req.session.userType = 'user';
-        return res.redirect('/');
+        req.session.userType = 'user'
+        return res.redirect('/')
       }
     } else {
-      return res.redirect('/');
+      return res.redirect('/')
     }
-  })(req, res);
-};
+  })(req, res)
+}
+
+// Retrieve profile
+var profile = function (req, res) {
+  var userID = (req.session.user)
+  User.findById(userID)
+    .exec((err, user) => {
+      if (err) return console.log(err)
+
+      res.render(path.join(__dirname, '/../views/profile-page/profile-page.pug'), {
+        user: user,
+        lastVisit: user.lastVisit
+      })
+    })
+}
 
 // Logout function
 var logout = function (req, res) {
-  console.log("'Logging out!'");
-  req.session = null;
-  res.redirect('/');
-};
+  console.log('Logging out!')
+  req.session = null
+  res.redirect('/')
+}
 
-module.exports.login = login;
-module.exports.register = register;
-module.exports.logout = logout;
+module.exports.login = login
+module.exports.register = register
+module.exports.profile = profile
+module.exports.logout = logout

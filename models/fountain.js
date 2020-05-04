@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 var fountainSchema = mongoose.Schema({
   name: String,
   // Stores the image object id
@@ -21,7 +21,7 @@ var fountainSchema = mongoose.Schema({
     default: 'available'
   },
   refill: {
-    type: Bool,
+    type: Boolean,
     default: false
   },
   lastVisit: {
@@ -32,6 +32,6 @@ var fountainSchema = mongoose.Schema({
     type: [String],
     index: true
   }
-});
+})
 
-mongoose.model('Fountain', fountainSchema, 'fountains');
+mongoose.model('Fountain', fountainSchema, 'fountains')

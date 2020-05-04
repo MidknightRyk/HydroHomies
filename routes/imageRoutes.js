@@ -13,11 +13,13 @@ var imageController = require('../controllers/imageController.js')
 
 // Get upload displayPic page
 router.get('/upload-DP', function (req, res) {
+  // TODO: front end page get
   res.sendFile(path.join(__dirname, '/../views/image-uploads/display-picture-upload.html'))
 })
 
 // Get upload fountain picture page
 router.get('/upload-images', function (req, res) {
+  // TODO: front end page get
   res.sendFile(path.join(__dirname, '/../views/image-uploads/fountain-picture-upload.html'))
 })
 
