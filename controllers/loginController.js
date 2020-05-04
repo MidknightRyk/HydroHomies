@@ -50,6 +50,7 @@ var login = function (req, res) {
       return res.redirect('/')
     }
     if (user) {
+      console.log('logging in')
       // Keep user id and name in session storage
       req.session.user = user._id
       req.session.username = user.username
@@ -57,6 +58,7 @@ var login = function (req, res) {
       req.session.userType = 'user'
       return res.redirect('/profile')
     } else {
+      console.log(req.body)
       return res.redirect('/')
     }
   })(req, res)
