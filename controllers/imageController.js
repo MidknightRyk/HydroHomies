@@ -1,4 +1,28 @@
+const fs = require('fs');
+var storage = require('sessionstorage');
+var mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
+var Image = mongoose.model('Image');
 
+// Upload images
+var uploadImages = function (req, res) {
+	// collect the image uploaded
+	var files = req.files;
+	// Upload image
+	var primary = files.shift();
+	var imgname = primary.originalname;
+
+	var image = new Image({
+		'name': imgname,
+		'data': fs.readFileSync(primary.path),
+		'contentType': primary.mimetype
+	});
+  
+	image.save();
+	console.log('Image ' + primary.originalname + ' has been uploaded!');
+	// direct to image uploaded page
+	return res.redirect('/');
+};
 
 // Retrive images from mongo
 var getImage = function (req, res) {

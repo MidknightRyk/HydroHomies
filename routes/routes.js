@@ -16,6 +16,13 @@ router.get('/', function (req, res) {
   // dirname : It will resolve to your project folder.
 });
 
+router.get('/upload-images', function (req, res) {
+	res.sendFile(path.join(__dirname, '/../views/uploadImage.html'));
+});
+
+// Get images
+router.get('/:image', imageController.getImage);
+
 /* POST requests */
 
 // Login
