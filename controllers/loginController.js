@@ -50,15 +50,12 @@ var login = function (req, res) {
       return res.redirect('/')
     }
     if (user) {
-      if (user.approved) {
-        // Keep user id and name in session storage
-        req.session.user = user._id
-        req.session.userName = user.name
-        req.session.username = user.username
-        // Set user type
-        req.session.userType = 'user'
-        return res.redirect('/')
-      }
+      // Keep user id and name in session storage
+      req.session.user = user._id
+      req.session.username = user.username
+      // Set user type
+      req.session.userType = 'user'
+      return res.redirect('/profile')
     } else {
       return res.redirect('/')
     }
@@ -72,9 +69,9 @@ var profile = function (req, res) {
     .exec((err, user) => {
       if (err) return console.log(err)
 
-      res.render(path.join(__dirname, '/../views/profile-page/profile-page.pug'), {
-        user: user,
-        lastVisit: user.lastVisit
+      res.sendFile(path.join(__dirname, '/../views/profile.html'), {
+        //user: user,
+        //lastVisit: user.lastVisit
       })
     })
 }

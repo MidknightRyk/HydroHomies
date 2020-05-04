@@ -24,6 +24,16 @@ router.get('/', function (req, res) {
   // dirname : It will resolve to your project folder.
 })
 
+// Get login page
+router.get('/login', function (req, res) {
+  res.sendFile(path.join(__dirname, '/../views/LogIn.html'))
+})
+
+// Get login page
+router.get('/register', function (req, res) {
+  res.sendFile(path.join(__dirname, '/../views/SignUp.html'))
+})
+
 // Get profile page
 router.get('/profile', loginController.profile)
 
