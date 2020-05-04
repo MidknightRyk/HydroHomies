@@ -1,27 +1,32 @@
 var express = require('express');
 var router = express.Router();
-var path = require('path
+var path = require('path')
+//controller imports
 var loginController = require('../controllers/loginController.js');
 var imageController = require('../controllers/imageController.js');
+//routes imports
+var image = require('./imageRoutes.js');
+var fountain = require('./fountainRoutes.js');
+
+// External routes
+router.use('/images', image);
+router.use('/fountain', fountains);
 
 /* GET Requests */
 
 // Get homepage
 router.get('/', function (req, res) {
-	if (!req.session.user) {
-		res.sendFile(path.join(__dirname, '/../views/homepage/homepage.html'));
-	} else {
-		res.redirect('/main');
-	}
+  if (!req.session.user) {
+    res.sendFile(path.join(__dirname, '/../views/homepage/homepage.html'));
+  } else {
+    //TODO: set up landing page after signin/login
+    res.redirect('/main');
+  }
   // dirname : It will resolve to your project folder.
 });
 
-router.get('/upload-images', function (req, res) {
-	res.sendFile(path.join(__dirname, '/../views/uploadImage.html'));
-});
-
-// Get images
-router.get('/:image', imageController.getImage);
+// Get profile page
+router.get('/profile', loginController.profile);
 
 /* POST requests */
 
@@ -35,4 +40,4 @@ router.post('/logout', loginController.logout);
 router.post('/register', loginController.register);
 
 
-module.exports = router;  
+module.exports = router;

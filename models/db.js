@@ -26,3 +26,5 @@ mongoose.connect(dbURL, options).then(
 
 // Initializes the schema for mongodb
 require('./user.js');
+require('./image.js');
+require('./fountain.js');
