@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var path = require('path
+var path = require('path');
 var loginController = require('../controllers/loginController.js');
 var imageController = require('../controllers/imageController.js');
 
@@ -9,7 +9,7 @@ var imageController = require('../controllers/imageController.js');
 // Get homepage
 router.get('/', function (req, res) {
 	if (!req.session.user) {
-		res.sendFile(path.join(__dirname, '/../views/homepage/homepage.html'));
+		res.sendFile(path.join(__dirname, '/../views/homepage.html'));
 	} else {
 		res.redirect('/main');
 	}
