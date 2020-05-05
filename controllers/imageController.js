@@ -11,7 +11,7 @@ var uploadImages = function (req, res) {
   // collect the images uploaded
   var files = req.files
   // Get the Fountain that these images are assigned to
-  var fountainID = storage.fountainId
+  var fountainID = storage.fountainId || mongoose.Types.ObjectId('5eb0ad026182844a5a591e7f')
   Fountain.findById(fountainID, function (err, fountain) {
     if (err) return console.log(err)
 
@@ -33,7 +33,7 @@ var uploadImages = function (req, res) {
     fountain.save()
   })
   // direct to fountain page
-  return res.redirect('/')
+  return res.redirect('/profile')
 }
 
 // Uploads display picture function

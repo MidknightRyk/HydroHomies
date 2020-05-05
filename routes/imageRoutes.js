@@ -20,7 +20,7 @@ router.get('/upload-DP', function (req, res) {
 // Get upload fountain picture page
 router.get('/upload-images', function (req, res) {
   // TODO: front end page get
-  res.sendFile(path.join(__dirname, '/../views/image-uploads/fountain-picture-upload.html'))
+  res.sendFile(path.join(__dirname, '/../views/uploadImage.html'))
 })
 
 /* !!!! ATTENTION: Add new get pages before this comment !!! */
