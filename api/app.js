@@ -34,8 +34,9 @@ app.set('views', './views')
 app.set('view engine', 'pug')
 
 app.use('/', routes)
+// Using port 9000 to avoid conflict with front-end
+const PORT = process.env.PORT || 9000
 // Start the server
-const PORT = process.env.PORT || 3000
 app.listen(PORT, function () {
   console.log(`Express listening on port ${PORT}`)
 })
