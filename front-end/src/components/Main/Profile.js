@@ -9,14 +9,6 @@ export default function Profile() {
         email: "",
     });
 
-    const handleChange = (e) => {
-        const {id, value} = e.target
-        setState(prevState => ({
-            ...prevState,
-            [id]: value
-        }))
-    };
-
 
     return (
         <form>

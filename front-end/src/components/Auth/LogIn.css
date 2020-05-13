@@ -15,8 +15,12 @@ header {
     font-size: 14px;
 }
 
-.description {
-    font-family: "Helvetica Neue Light";
+nav {
+    margin: 1rem;
+}
+
+nav > a {
+    margin-left: 1rem;
 }
 
 form {

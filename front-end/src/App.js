@@ -1,11 +1,44 @@
 import React from 'react';
-import './App.css';
-import LogIn from "./components/LogIn/LogIn";
+import { NavLink, Route, withRouter } from 'react-router-dom';
 
-function App() {
-  return (
-    <LogIn/>
-  );
+import './App.css';
+import LogIn from "./components/Auth/LogIn";
+import SignUp from "./components/Auth/SignUp";
+import Dashboard from "./components/Main/Dashboard";
+import Button from "@material-ui/core/Button";
+
+class App extends React.Component {
+
+    render() {
+        return (
+            <>
+            <header>
+                <h1>   HydroHomies </h1>
+                        <nav>
+                            <Button color="inherit"><NavLink to="/login">Login</NavLink></Button>
+                            <Button color="inherit"><NavLink to="/signUp">Sign Up</NavLink></Button>
+                            <Button color="inherit"><NavLink to="/dashboard">Dashboard</NavLink><br/><br/></Button>
+                        </nav>
+
+                </header>
+                <main>
+
+                    <Route path="/login" component={LogIn} />
+                    <Route path="/signUp" component={SignUp} />
+                    <Route path='/dashboard' component={Dashboard}/>
+                </main>
+                <footer>
+                    <button onClick={this.logout} style={ { textAlign: "center", float: "left" }}>Logout</button>
+                </footer>
+            </>
+
+        );
+    }
+
+    logout = () => {
+        localStorage.removeItem('jwt');
+        this.props.history.push('/login');
+    };
 }
 
-export default App;
+export default withRouter(App);
