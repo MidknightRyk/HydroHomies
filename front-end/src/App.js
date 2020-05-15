@@ -5,24 +5,29 @@ import './App.css';
 import LogIn from "./components/Auth/LogIn";
 import SignUp from "./components/Auth/SignUp";
 import Dashboard from "./components/Main/Dashboard";
-import Button from "@material-ui/core/Button";
+/*import Button from "@material-ui/core/Button"; */
+import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
 
     render() {
         return (
             <>
+            <main>
             <header>
-                <h1>   HydroHomies </h1>
-                        <nav>
-                            <Button color="inherit"><NavLink to="/login">Login</NavLink></Button>
-                            <Button color="inherit"><NavLink to="/signUp">Sign Up</NavLink></Button>
-                            <Button color="inherit"><NavLink to="/dashboard">Dashboard</NavLink><br/><br/></Button>
-                        </nav>
+            <h1>   HYDROHOMIES </h1> 
 
                 </header>
-                <main>
-
+                
+                    <Button variant= "outline-primary" size="lg"> <NavLink to="/login">Login</NavLink></Button>
+                    <br></br>
+                    <br></br>
+                    <Button variant = "outline-primary" size="lg"> <NavLink to ="/signUp">Sign Up</NavLink></Button>
+                    <br></br>
+                    <br></br>
+                    <Button variant = "outline-primary" size = "lg"> <NavLink to="/dashboard">Dashboard</NavLink></Button>
+                    
+                     
                     <Route path="/login" component={LogIn} />
                     <Route path="/signUp" component={SignUp} />
                     <Route path='/dashboard' component={Dashboard}/>
