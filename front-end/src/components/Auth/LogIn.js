@@ -4,9 +4,9 @@ import axios from 'axios';
 
 function LogIn() {
     const [state, setState] = useState({
-        username: "abc",
-        email: "def",
-        password: "123456",
+        username: "Enter username here",
+        email: "Enter email address here",
+        password: "",
         successMessage: null
     });
     const handleChange = (e) => {
