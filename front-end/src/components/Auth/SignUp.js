@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import "./SignUp.css";
+import { NavLink, Route, withRouter, Switch } from 'react-router-dom';
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 
 function SignUp() {
 
@@ -47,6 +49,7 @@ function SignUp() {
 
     return (
         <form onSubmit={HandleSubmitClick}>
+
             <div>
                 <h1>Sign Up</h1>
                 <label>First Name </label><br />

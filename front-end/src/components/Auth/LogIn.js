@@ -1,14 +1,19 @@
 import React, {useState} from "react";
+import { NavLink, Route, withRouter, Switch } from 'react-router-dom';
 import'./LogIn.css';
-import axios from 'axios';
+import store from 'store';
+import Button from "react-bootstrap/Button";
+
 
 function LogIn() {
     const [state, setState] = useState({
         username: "Enter username here",
         email: "Enter email address here",
         password: "",
-        successMessage: null
     });
+    
+    const [error, setError] = useState(false);
+
     const handleChange = (e) => {
         const {id, value} = e.target
         setState(prevState => ({
@@ -19,21 +24,23 @@ function LogIn() {
 
     const HandleSubmitClick = (e) =>{
         e.preventDefault();
-        const endpoint = 'http://localhost:3600/api/login';
-        axios
-            .post(endpoint, state)
-            .then(res => {
-                console.log('RESPONSE', res.data);
-                localStorage.setItem('jwt', res.data.token);
-                this.props.history.push('/users');
-            })
-            .catch(error => {
-                console.error('ERROR', error);
-            });
-    };
+
+        const { username, password } = state;
+
+        setError(false);
+
+        if (!(username === 'xxx' && password === 'yyy')) {
+            return setError(true);
+        }
+
+        console.log("you're logged in. yay!");
+        store.set('loggedIn', true);
+    }
 
     return(
+
         <form onSubmit={HandleSubmitClick}>
+
             <div>
                 <h1>Log In</h1>
                 <label>Username:</label>

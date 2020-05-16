@@ -9,11 +9,13 @@
     "google-maps-api-loader": "^1.1.1",
     "jquery": "^1.9.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-google-maps": "^9.4.5",
     "react-router": "^5.2.0",
     "react-scripts": "3.4.1",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "store": "^2.0.12"
   },
   "scripts": {
     "start": "react-scripts start",

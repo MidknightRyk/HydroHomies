@@ -7,6 +7,9 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import MapIcon from '@material-ui/icons/Map';
 import PlaceIcon from '@material-ui/icons/Place';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import {NavLink} from "react-router-dom";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Badge from "@material-ui/core/Badge";
 
 export const mainListItems = (
     <div>
@@ -16,12 +19,12 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button>
+        <NavLink to="/profile"> <ListItem button>
             <ListItemIcon>
-                <AccountBoxIcon />
+               <AccountBoxIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
-        </ListItem>
+        </ListItem></NavLink>
     </div>
 );
 

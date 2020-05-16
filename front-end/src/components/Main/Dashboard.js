@@ -20,6 +20,10 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { mainListItems, secondaryListItems } from './listItems';
 
 import Map from './Map';
+import Profile from './Profile';
+import { NavLink, Route, withRouter, Switch } from 'react-router-dom';
+import LogIn from "../Auth/LogIn";
+import SignUp from "../Auth/SignUp";
 
 // https://material-ui.com/getting-started/templates/dashboard/
 function Copyright() {
@@ -116,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Dashboard() {
+function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => {
@@ -128,6 +132,7 @@ export default function Dashboard() {
 
     return (
         <div className={classes.root}>
+
             <CssBaseline />
             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
@@ -146,7 +151,7 @@ export default function Dashboard() {
 
                     <IconButton color="inherit">
                         <Badge color="secondary">
-                            <AccountCircleIcon />
+                            <NavLink to="/profile"><AccountCircleIcon /></NavLink>
                         </Badge>
                     </IconButton>
                 </Toolbar>
@@ -182,3 +187,5 @@ export default function Dashboard() {
         </div>
     );
 }
+
+export default Dashboard;
