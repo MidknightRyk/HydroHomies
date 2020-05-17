@@ -10,7 +10,7 @@ var imageController = require('../controllers/imageController.js')
 // Routes for image related stuff
 
 /* GET requests */
-
+/*
 // Get upload displayPic page
 router.get('/upload-DP', function (req, res) {
   // TODO: front end page get

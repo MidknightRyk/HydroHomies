@@ -14,6 +14,7 @@ router.use('/fountain', fountain)
 /* GET Requests */
 
 // Get homepage
+/*
 router.get('/', function (req, res) {
   if (!req.session.user) {
     res.sendFile(path.join(__dirname, '/../views/homepage.html'))
@@ -33,6 +34,8 @@ router.get('/login', function (req, res) {
 router.get('/register', function (req, res) {
   res.sendFile(path.join(__dirname, '/../views/SignUp.html'))
 })
+
+*/
 
 // Get profile page
 router.get('/profile', loginController.profile)

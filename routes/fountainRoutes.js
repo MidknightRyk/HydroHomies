@@ -11,6 +11,7 @@ var fountainController = require('../controllers/fountainController.js')
 /* directs to fountain page */
 // router.get('/:fountain', fountainController.getFountain)
 // temp test page
+/*
 router.get('/fountain-test', function (req, res) {
   res.sendFile(path.join(__dirname, '/../views/fountain.html'))
 })
