@@ -60,7 +60,7 @@ export const ProfilePage = () => {
                 </tr>
                 </tbody>
             </Table>
-            <a className = "profilelink" href = "./dashboard"><em>Return to Dashboard</em></a>
+            <a href = "./dashboard"><b><em>Return to Dashboard</em></b></a>
         </div>
     );
 }

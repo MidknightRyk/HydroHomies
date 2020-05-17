@@ -1,10 +1,10 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import {Home} from "./Home";
-import {Login} from "./Login"
-import {SignUp} from "./SignUp";
-import {ProfilePage} from "./ProfilePage";
-import {Dashboard} from "./Dashboard";
+import {Home} from "./Main/Home";
+import {Login} from "./Auth/Login"
+import {SignUp} from "./Auth/SignUp";
+import {ProfilePage} from "./Main/ProfilePage";
+import {Dashboard} from "./Main/Dashboard";
 
 
 function App() {

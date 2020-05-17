@@ -33,9 +33,9 @@ export const Login = () => {
                 <h1 className="login">Log In </h1>
                 <br></br>
                 <div className="form-group">
-                    <label htmlFor="username"> User Name or Email </label>
-                    <input type="text" className="form-control" name="username" id="username" placeholder="Enter User name or Email"
-                           error={error} onChange={(e)=>setUsername(e.target.value)} />
+                    <label htmlFor="username"> User Name </label>
+                    <input type="text" className="form-control" name="username" id="username" placeholder="Enter User name"
+                           error={error} onChange={(e)=>setUsername(e.target.value)} required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="Password"> Password</label>
