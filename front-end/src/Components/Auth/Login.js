@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, {useState, useEffect} from "react"
 import "./Login.css"
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export const Login = () => {
     const [username, setUsername] = useState('');
@@ -7,6 +9,7 @@ export const Login = () => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [helperText, setHelperText] = useState('');
     const [error, setError] = useState(false);
+    const history = useHistory();
 
     useEffect(() => {
         if (username.trim() && password.trim()) {
@@ -17,43 +20,61 @@ export const Login = () => {
     }, [username, password]);
 
     const handleLogin = () => {
-        if (username === 'xyz' && password === 'password') {
-            setError(false);
-            setHelperText('Login Successfully');
-        } else {
-            setError(true);
-            setHelperText('Incorrect username or password')
-        }
+        const payload = {
+            "username": username,
+            "email": username,
+            "pwd": password
+        };
+
+        axios({
+            method: "POST",
+            url: 'http://127.0.0.1:9000/login/',
+            data: payload,
+        }).then(function (response) {
+            console.log(response);
+            if (response.status === 200) {
+                localStorage.setItem('user', JSON.stringify(response.data));
+                console.log(localStorage);
+                history.push("/dashboard");
+            } else {
+                console.log(response);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
     };
 
     return (
-       <div>
+        <div>
 
-           <div className="form-container">
+            <div className="form-container">
                 <h1 className="login">Log In </h1>
                 <br></br>
                 <div className="form-group">
                     <label htmlFor="username"> User Name </label>
-                    <input type="text" className="form-control" name="username" id="username" placeholder="Enter User name"
-                           error={error} onChange={(e)=>setUsername(e.target.value)} required/>
+                    <input type="text" className="form-control" name="username" id="username"
+                           placeholder="Enter User name"
+                           error={error} onChange={(e) => setUsername(e.target.value)} required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="Password"> Password</label>
-                    <input type="password" className="form-control" name="password" id="password" placeholder="Enter Password"
+                    <input type="password" className="form-control" name="password" id="password"
+                           placeholder="Enter Password"
                            error={error}
                            helperText={helperText}
-                           onChange={(e)=>setPassword(e.target.value)} required />
+                           onChange={(e) => setPassword(e.target.value)} required/>
                 </div>
                 <div className="text-center">
-                    <a href="./Dashboard">
-                    <button className="btn btn-primary btn-lg" onClick={()=>handleLogin()}
-                            disabled={isButtonDisabled}>Log In</button>
-                    </a>
+                    <button className="btn btn-primary btn-lg"
+                            onClick={handleLogin}
+                            disabled={isButtonDisabled}
+                    >Log In
+                    </button>
                     <br></br>
-                    <a href = "./SignUp"><b> Create a new account</b></a>
-                 </div>
+                    <a href="./SignUp"><b> Create a new account</b></a>
+                </div>
             </div>
-           <br></br>
+            <br></br>
 
 
         </div>

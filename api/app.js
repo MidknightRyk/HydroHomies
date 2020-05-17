@@ -28,6 +28,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
+const cors = require('cors');
+app.use(cors());
+
 var routes = require('./routes/routes.js')
 
 app.set('views', './views')

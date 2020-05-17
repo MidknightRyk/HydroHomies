@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react"
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export const SignUp = () => {
     const [firstname, setFirstname] = useState('');
@@ -7,6 +9,7 @@ export const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const history = useHistory();
 
     useEffect(() => {
         if (firstname.trim() && lastname.trim() && username.trim() && email.trim() && password.trim()) {
@@ -15,6 +18,33 @@ export const SignUp = () => {
             setIsButtonDisabled(true);
         }
     }, [firstname, lastname, username, email, password]);
+    
+    const HandleSignUp = (e) => {
+        const payload ={
+            "firstname": firstname,
+            "lastname": lastname,
+            "username": username,
+            "email": email,
+            "pwd": password
+        };
+
+        axios({
+            method: "POST",
+            url: 'http://127.0.0.1:9000/register/',
+            data: payload,
+        }).then(function (response) {
+            if (response.status === 200) {
+                console.log(response);
+                history.push("/login");
+
+            } else {
+                console.log(response);
+            }
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
     return (
         <div>
@@ -47,9 +77,11 @@ export const SignUp = () => {
                 </div>
                 <br></br>
                 <div className="text-center">
-                    <a href="./Dashboard">
-                        <button className="btn btn-primary btn-lg" disabled={isButtonDisabled}>Create account</button>
-                    </a>
+                    <button
+                        className="btn btn-primary btn-lg"
+                        disabled={isButtonDisabled}
+                        onClick={HandleSignUp}
+                    >Create account</button>
                     <br></br>
                     <a href='./Login'> <b> Already have an account? </b></a>
                 </div>

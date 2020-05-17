@@ -16,7 +16,7 @@ var register = function (req, res) {
     if (user) {
       req.flash('error', 'That user already exists!')
       console.log('user exists')
-      return res.redirect('back')
+      return res.send({"error": 'That user already exists!'})
     } else {
       // If username is not taken
       User.findOne({
@@ -25,7 +25,7 @@ var register = function (req, res) {
         if (name) {
           req.flash('error', 'Username taken!')
           console.log('username taken')
-          return res.redirect('back')
+          return res.send({"error": 'Username taken!'})
         } else {
           // Create new user and redirect to awaiting approval page
           var user = new User({
@@ -35,8 +35,8 @@ var register = function (req, res) {
           console.log(req.body)
           user.setPassword(req.body.pwd)
           return user.save()
-            .then(() => res.redirect('/'))
-        }
+            .then(() => res.send("success"))
+      }
       })
     }
   })
@@ -47,7 +47,7 @@ var login = function (req, res) {
   passport.authenticate('user', (err, user, info) => {
     if (err) {
       console.log(err)
-      return res.redirect('/')
+      return res.send({"error": err})
     }
     if (user) {
       console.log('logging in')
@@ -56,10 +56,14 @@ var login = function (req, res) {
       req.session.username = user.username
       // Set user type
       req.session.userType = 'user'
-      return res.redirect('/profile')
+      return res.send({
+        "user": user._id,
+        "username": user.username,
+        "email": user.email,
+        "userType": "user"
+      })
     } else {
-      console.log(req.body)
-      return res.redirect('/')
+      return res.send({"error": "error"})
     }
   })(req, res)
 }
