@@ -1,12 +1,14 @@
 # HydroHomies
 
 <h2><b>Deliverable 3</b></h2>
-
-
-
-
-
-
+<h3>Core Functionalities</h3>
+<ul>
+  <li>Log In</li>
+  <li>Sign Up</li>
+  <li>Map with fountains coordinates</li>
+  <li>Location Service</li>
+  <li>Upload profile picture</li>
+</ul>
 
 <h2>Summary of the Proposal</h2>
 <p>The system that we intend to design is a web app that will not only show where the water fountains are on the given area of a map but direct you to either the closest one or one of your choice with GPS like interface. The web app will also include information about each water fountain such as: bottle refill option, accessibility, user reviews, timestamp of your last visit, etc. <br> <br>
