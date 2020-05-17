@@ -1,46 +1,26 @@
-import React from 'react';
-import { NavLink, Route, withRouter } from 'react-router-dom';
+import React from "react";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Home} from "./Home";
+import {Login} from "./Login"
+import {SignUp} from "./SignUp";
+import {ProfilePage} from "./ProfilePage";
+import {Dashboard} from "./Dashboard";
 
-import './App.css';
-import LogIn from "./components/Auth/LogIn";
-import SignUp from "./components/Auth/SignUp";
-import Dashboard from "./components/Main/Dashboard";
-import Button from "@material-ui/core/Button";
-import Profile from "./components/Main/Profile";
 
-class App extends React.Component {
+function App() {
+  return (
+    <React.Fragment>
+        <Router>
+         <Switch>
+            <Route exact path="/" component = {Home}/>
+            <Route path = "/signUp" component = {SignUp}/>
+            <Route path = "/login" component = {Login}/>
+            <Route path = "/dashboard" component ={Dashboard}/>
+            <Route path = "/profilePage" component ={ProfilePage}/>
 
-    render() {
-        return (
-            <>
-            <header>
-                <h1>   HydroHomies </h1>
-                        <nav>
-                            <Button color="inherit"><NavLink to="/login">Login</NavLink></Button>
-                            <Button color="inherit"><NavLink to="/signUp">Sign Up</NavLink></Button>
-                            <Button color="inherit"><NavLink to="/dashboard">Dashboard</NavLink><br/><br/></Button>
-                        </nav>
-
-                </header>
-                <main>
-
-                    <Route path="/login" component={LogIn} />
-                    <Route path="/signUp" component={SignUp} />
-                    <Route path="/dashboard" component={Dashboard}/>
-                    <Route path="/profile" component={Profile}/>
-                </main>
-                <footer>
-                    <button onClick={this.logout} style={ { textAlign: "center", float: "left" }}>Logout</button>
-                </footer>
-            </>
-
-        );
-    }
-
-    logout = () => {
-        localStorage.removeItem('jwt');
-        this.props.history.push('/login');
-    };
+          </Switch>
+        </Router> 
+    </React.Fragment>
+  );
 }
-
-export default withRouter(App);
+export default App;
