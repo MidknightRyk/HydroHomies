@@ -6,19 +6,19 @@ In the project directory, you can run:
 
 ### `npm install`
 
-Install all the dependencies to ensure the running of the app on localhost.<br />
+Installs all the dependencies to ensure the running of the app on localhost.<br />
 
 ### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+<h3><a href="https://hydrohomies.herokuapp.com/">Live Website</h3>
 
 <h3>Core Functionalities</h3>
 <ul>
-  <li>Log In/Sign Up</li>
-  <li>Map with fountains coordinates</li>
-  <li>Location Service</li>
+  <li>Authentication (Login/Sign up)</li>
+  <li>Map with location service and fountains' coordinates display</li>
 </ul>
 
 <br>
@@ -45,7 +45,7 @@ The app will also provide an interface for people to plan their journey while in
   <tr>
     <td>7</td>
     <td>Sunday, May 10 @5pm</td>
-    <td><a href="https://canvas.lms.unimelb.edu.au/courses/8135/quizzes/47512" target="_blank">Mockup App Server</a></td>
+    <td>Mockup App Server</td>
     <td>10%</td>
   </tr>
   <tr>
