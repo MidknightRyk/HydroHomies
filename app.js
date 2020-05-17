@@ -3,6 +3,7 @@ var app = express()
 var bodyParser = require('body-parser')
 var session = require('cookie-session')
 var flash = require('express-flash')
+var path = require('path');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
