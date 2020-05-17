@@ -1,5 +1,13 @@
 # HydroHomies
 
+<h2><b>Deliverable 3</b></h2>
+
+
+
+
+
+
+
 <h2>Summary of the Proposal</h2>
 <p>The system that we intend to design is a web app that will not only show where the water fountains are on the given area of a map but direct you to either the closest one or one of your choice with GPS like interface. The web app will also include information about each water fountain such as: bottle refill option, accessibility, user reviews, timestamp of your last visit, etc. <br> <br>
 The app will also provide an interface for people to plan their journey while incorporating water fountain stops on the way. This will be helpful for people who would like to add a water stop in their plan for their day out. The final plan can also be shared to social media, friends, or various outlets, which can also work in part as a safety function to let people know where you'll be.
@@ -21,7 +29,7 @@ The app will also provide an interface for people to plan their journey while in
   </tr> 
   <tr>
     <td>7</td>
-    <td>Wednesday, Apr 29 @5pm</td>
+    <td>Sunday, May 10 @5pm</td>
     <td><a href="https://canvas.lms.unimelb.edu.au/courses/8135/quizzes/47512" target="_blank">Mockup App Server</a></td>
     <td>10%</td>
   </tr>
