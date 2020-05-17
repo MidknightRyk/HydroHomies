@@ -10,13 +10,13 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 export const mainListItems = (
     <div>
-        <ListItem button>
+        <ListItem button component="a" href="/dashboard">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Dashboard"/>
         </ListItem>
-        <ListItem button>
+        <ListItem button component="a" href="/profile">
             <ListItemIcon>
                 <AccountBoxIcon />
             </ListItemIcon>

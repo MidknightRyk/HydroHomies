@@ -6,6 +6,7 @@ import LogIn from "./components/Auth/LogIn";
 import SignUp from "./components/Auth/SignUp";
 import Dashboard from "./components/Main/Dashboard";
 import Button from "@material-ui/core/Button";
+import Profile from "./components/Main/Profile";
 
 class App extends React.Component {
 
@@ -25,7 +26,8 @@ class App extends React.Component {
 
                     <Route path="/login" component={LogIn} />
                     <Route path="/signUp" component={SignUp} />
-                    <Route path='/dashboard' component={Dashboard}/>
+                    <Route path="/dashboard" component={Dashboard}/>
+                    <Route path="/profile" component={Profile}/>
                 </main>
                 <footer>
                     <button onClick={this.logout} style={ { textAlign: "center", float: "left" }}>Logout</button>

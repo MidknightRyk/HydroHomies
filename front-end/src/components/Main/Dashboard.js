@@ -144,7 +144,7 @@ export default function Dashboard() {
                         HydroHomies
                     </Typography>
 
-                    <IconButton color="inherit">
+                    <IconButton color="inherit" component="a" href="/profile">
                         <Badge color="secondary">
                             <AccountCircleIcon />
                         </Badge>
