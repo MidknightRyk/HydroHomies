@@ -7,7 +7,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
-app.use(express.static(__dirname))
+app.use(express.static(path.join(__dirname, 'front-end/build')))
 app.use(session({
   secret: 'hydrohomes',
   resave: false,
@@ -37,6 +37,12 @@ app.set('views', './views')
 app.set('view engine', 'pug')
 
 app.use('/', routes)
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/front-end/build/index.html'));
+});
 // Using port 9000 to avoid conflict with front-end
 const PORT = process.env.PORT || 9000
 // Start the server
