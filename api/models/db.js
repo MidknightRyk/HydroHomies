@@ -6,7 +6,7 @@ const dbURI =
   'mongodb+srv://HydroHomies:<password>@hydrohomies-u3qcl.mongodb.net/test?retryWrites=true&w=majority'
 
 var dbURL =
-  dbURI.replace('<password>', "ItYwbp104PVCu5ne")
+  dbURI.replace('<password>', process.env.MONGO_PASSWORD)
 
 const options = {
   useNewUrlParser: true,

@@ -2,7 +2,7 @@ import React from "react"
 import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
-
+import axios from 'axios';
 
 export const ProfilePage = () => {
     const uploadedImage = React.useRef(null);
@@ -20,6 +20,11 @@ export const ProfilePage = () => {
             reader.readAsDataURL(file);
         }
     };
+
+    console.log(localStorage);
+
+    let user;
+    user = JSON.parse(localStorage.getItem('user'));
 
     return (
         <div className="Table">
@@ -52,11 +57,11 @@ export const ProfilePage = () => {
                     </tr>
                 <tr>
                     <td>Username</td>
-                    <td>homieboy</td>
+                    <td>{user.username}</td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td>ahyeah@whatever.com</td>
+                    <td>{user.email}</td>
                 </tr>
                 </tbody>
             </Table>
