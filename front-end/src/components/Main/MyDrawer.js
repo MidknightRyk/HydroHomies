@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
-import './Profile.css';
-import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import clsx from "clsx";
+import IconButton from "@material-ui/core/IconButton";
+import Drawer from "@material-ui/core/Drawer/Drawer";
+import Divider from "@material-ui/core/Divider";
+import List from "@material-ui/core/List";
+import {mainListItems, secondaryListItems} from "./listItems";
+import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import MyNavBar from "./MyNavBar";
-import MyDrawer from "./MyDrawer";
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -84,47 +89,35 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Profile() {
+function MyDrawer() {
     const classes = useStyles();
-    const [state, setState] = useState({
-        profilePicture: null,
-        firstName: "",
-        lastName: "",
-        email: "",
-    });
-
-    const ProfileImage = (props) => {
-        return(
-            <img src={props.src} alt="bruh" className="profile-image"/>
-        )
+    const [open, setOpen] = React.useState(true);
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
     };
 
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <MyNavBar/>
-            <MyDrawer/>
-            <form>
-                <div>
-                    <h1>Profile</h1>
-                    <div className="pfp">
-                        <h3>Profile Picture</h3>
-                        <ProfileImage src="https://townsquare.media/site/252/files/2019/09/oli-london-jimin.jpg?w=980&q=75" alt="bruh"/>
-                    </div>
-
-                    <div className="description">
-                        <h3>First Name: </h3>
-                        <h3 id="firstName">Oli</h3>
-                        <br />
-                        <h3>Last Name: </h3>
-                        <h3 id="lastName">London</h3>
-                        <br />
-                        <h3>Email Address: </h3>
-                        <h3 id="email">oli.london@oliayoh.com</h3>
-                        <br />
-                    </div>
-                </div>
-            </form>
-        </div>
+        <Drawer
+            variant="permanent"
+            classes={{
+                paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+            }}
+            open={open}
+        >
+            <div className={classes.toolbarIcon}>
+                <IconButton onClick={handleDrawerClose}>
+                    <ChevronLeftIcon />
+                </IconButton>
+            </div>
+            <Divider />
+            <List>{mainListItems}</List>
+            <Divider />
+            <List>{secondaryListItems}</List>
+        </Drawer>
     );
 }
+
+export default MyDrawer;

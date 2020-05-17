@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
-import './Profile.css';
-import CssBaseline from "@material-ui/core/CssBaseline/CssBaseline";
+import AppBar from "@material-ui/core/AppBar/AppBar";
+import clsx from "clsx";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Typography from "@material-ui/core/Typography";
+import Badge from "@material-ui/core/Badge";
+import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import MyNavBar from "./MyNavBar";
-import MyDrawer from "./MyDrawer";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -84,47 +90,40 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Profile() {
+function MyNavBar() {
     const classes = useStyles();
-    const [state, setState] = useState({
-        profilePicture: null,
-        firstName: "",
-        lastName: "",
-        email: "",
-    });
-
-    const ProfileImage = (props) => {
-        return(
-            <img src={props.src} alt="bruh" className="profile-image"/>
-        )
+    const [open, setOpen] = React.useState(true);
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
     };
 
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <MyNavBar/>
-            <MyDrawer/>
-            <form>
-                <div>
-                    <h1>Profile</h1>
-                    <div className="pfp">
-                        <h3>Profile Picture</h3>
-                        <ProfileImage src="https://townsquare.media/site/252/files/2019/09/oli-london-jimin.jpg?w=980&q=75" alt="bruh"/>
-                    </div>
+            <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+                <Toolbar className={classes.toolbar}>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                        HydroHomies
+                    </Typography>
 
-                    <div className="description">
-                        <h3>First Name: </h3>
-                        <h3 id="firstName">Oli</h3>
-                        <br />
-                        <h3>Last Name: </h3>
-                        <h3 id="lastName">London</h3>
-                        <br />
-                        <h3>Email Address: </h3>
-                        <h3 id="email">oli.london@oliayoh.com</h3>
-                        <br />
-                    </div>
-                </div>
-            </form>
-        </div>
+                    <IconButton color="inherit" component="a" href="/profile">
+                        <Badge color="secondary">
+                            <AccountCircleIcon />
+                        </Badge>
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
     );
 }
+
+export default MyNavBar;

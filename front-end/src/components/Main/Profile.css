@@ -37,3 +37,7 @@ form > div {
 form label {
     font-size: 0.7rem;
 }
+
+.profile-image {
+    max-width: 400px;
+}
