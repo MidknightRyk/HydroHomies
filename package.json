@@ -31,9 +31,9 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "sessionstorage": "^0.1.0",
-    "body-parser": "latest"
+    "body-parser": "latest",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
-    "cors": "^2.8.5"
   }
 }
