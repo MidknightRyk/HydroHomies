@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/* CSS Document */
+/* add characteristics for the log in and sign up buttons */
+.button { padding: 20px 80px;
+	border: none;
+	align-self: center;
+	color: white;
+	background-color: mediumblue;
+	cursor: pointer;
+	font-size: 30px;
+}
+.button:hover { background-color: blue;
+}
+
+body{
+/* add background image to the homepage*/
+	/* background-image: url() */
+	background-repeat: no-repeat;
+}

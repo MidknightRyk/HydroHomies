@@ -1,5 +1,28 @@
 # HydroHomies
 
+<h2><b>Deliverable 3</b></h2>
+
+In the project directory, you can run:
+
+### `npm install`
+
+Installs all the dependencies to ensure the running of the app on localhost.<br />
+
+### `npm start`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+<h3><a href="https://hydrohomies.herokuapp.com/">Live Website</h3>
+
+<h3>Core Functionalities</h3>
+<ul>
+  <li>Authentication (Login/Sign up)</li>
+  <li>Map with location service and fountains' coordinates display</li>
+</ul>
+
+<br>
+
 <h2>Summary of the Proposal</h2>
 <p>The system that we intend to design is a web app that will not only show where the water fountains are on the given area of a map but direct you to either the closest one or one of your choice with GPS like interface. The web app will also include information about each water fountain such as: bottle refill option, accessibility, user reviews, timestamp of your last visit, etc. <br> <br>
 The app will also provide an interface for people to plan their journey while incorporating water fountain stops on the way. This will be helpful for people who would like to add a water stop in their plan for their day out. The final plan can also be shared to social media, friends, or various outlets, which can also work in part as a safety function to let people know where you'll be.
@@ -21,8 +44,8 @@ The app will also provide an interface for people to plan their journey while in
   </tr> 
   <tr>
     <td>7</td>
-    <td>Wednesday, Apr 29 @5pm</td>
-    <td><a href="https://canvas.lms.unimelb.edu.au/courses/8135/quizzes/47512" target="_blank">Mockup App Server</a></td>
+    <td>Sunday, May 10 @5pm</td>
+    <td>Mockup App Server</td>
     <td>10%</td>
   </tr>
   <tr>

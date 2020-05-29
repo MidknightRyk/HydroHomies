@@ -1,6 +1,7 @@
 # exclude the following directories
 node_modules/
 api/uploads/
+uploads/
 
 # The following are no deployed for security purposes
 .env
