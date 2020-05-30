@@ -38,7 +38,6 @@ export const Map = React.memo(function Map() {
             });
         });
         layer1.setMap(map);
-        console.log(layer1.Feature.getProperty('lan'));
 
         function handleClicks(event) {
             infowindow.setContent(
