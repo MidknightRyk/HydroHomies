@@ -19,8 +19,8 @@ export const Dashboard = () => (
                        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                        <Nav.Link href="/profilePage">Profile</Nav.Link>
                        <NavDropdown title="Saved" id="basic-nav-dropdown">
-                           <NavDropdown.Item href="#action/3.1">Fountains</NavDropdown.Item>
-                           <NavDropdown.Item href="#action/3.2">Routes</NavDropdown.Item>
+                           <NavDropdown.Item href="./Fountains">Fountains</NavDropdown.Item>
+                           <NavDropdown.Item href="./Routes">Routes</NavDropdown.Item>
                        </NavDropdown>
                    </Nav>
                </Navbar.Collapse>
