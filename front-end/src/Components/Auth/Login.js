@@ -28,7 +28,7 @@ export const Login = () => {
 
         axios({
             method: "POST",
-            url: 'http://127.0.0.1:9000/login/',
+            url: '/login',
             data: payload,
         }).then(function (response) {
             console.log(response);

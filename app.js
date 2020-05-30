@@ -1,52 +1,43 @@
-var express = require('express')
-var app = express()
-var bodyParser = require('body-parser')
-var session = require('cookie-session')
-var flash = require('express-flash')
-var path = require('path');
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-app.use(express.static(path.join(__dirname, 'front-end/build')))
-app.use(session({
-  secret: 'hydrohomes',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secureProxy: true,
-    httpOnly: true
-  }
-}))
+var express = require("express");
+var app = express();
+var bodyParser = require("body-parser");
+var session = require("cookie-parser");
+var flash = require("express-flash");
+var path = require("path");
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+app.use(express.static(path.join(__dirname, "front-end/build")));
+app.use(session());
 
 // Database setup
-require('./models/db.js')
-require('./config/passport.js')
+require("./models/db.js");
+require("./config/passport.js");
 
 // Passport setup
-var passport = require('passport')
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
+var passport = require("passport");
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
-const cors = require('cors');
+const cors = require("cors");
 app.use(cors());
 
-var routes = require('./routes/routes.js')
+var routes = require("./routes/routes.js");
 
-app.set('views', './views')
-app.set('view engine', 'pug')
+app.use("/", routes);
 
-app.use('/', routes)
-
-// The "catchall" handler: for any request that doesn't
+// The 'catchall' handler: for any request that doesn't
 // match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/front-end/build/index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/front-end/build/index.html"));
 });
 // Using port 9000 to avoid conflict with front-end
-const PORT = process.env.PORT || 9000
+const PORT = process.env.PORT || 9000;
 // Start the server
-app.listen(PORT, function () {
-  console.log(`Express listening on port ${PORT}`)
-})
+app.listen(PORT, function() {
+  console.log(`Express listening on port ${PORT}`);
+});
