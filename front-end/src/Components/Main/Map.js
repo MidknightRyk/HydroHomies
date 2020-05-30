@@ -4,6 +4,7 @@ import { useGoogleMaps } from "react-hook-google-maps";
 // based on https://developers.google.com/maps/documentation/javascript/adding-a-google-map
 const melb = { lat: -37.8136, lng: 144.9631 };
 
+// from https://dev.socrata.com/foundry/data.melbourne.vic.gov.au/h4ih-tzqs
 const data = "https://data.melbourne.vic.gov.au/resource/h4ih-tzqs.geojson";
 
 export const Map = React.memo(function Map() {
@@ -18,10 +19,42 @@ export const Map = React.memo(function Map() {
 
 
     if (map) {
+        let infowindow = new google.maps.InfoWindow();
+        google.maps.event.addListener(map, 'click', function() {
+            infowindow.close();
+        });
+
         // execute when map object is ready
-        const geoJson = map.data.loadGeoJson(data);
-        console.log(geoJson);
-        map.data.addGeoJson(geoJson);
+        // const geoJson = map.data.loadGeoJson(data);
+        // console.log(geoJson);
+        // map.data.addGeoJson(geoJson);
+
+        // https://stackoverflow.com/questions/59638418/change-markers-of-different-map-data-loadgeojson-data-sets-in-google-maps-api-3
+        let layer1 = new google.maps.Data();
+        layer1.loadGeoJson(data);
+        layer1.setStyle(function(feature) {
+            return /** @type {!google.maps.Data.StyleOptions} */ ({
+                icon: "http://maps.google.com/mapfiles/ms/micons/blue.png"
+            });
+        });
+        layer1.setMap(map);
+
+        function handleClicks(event) {
+            infowindow.setContent(
+                "<table>" +
+                "<tbody>" + "<th>Name:</th>" + "<td>" + event.feature.getProperty('descriptio') + "</td>" + "</tbody>" +
+                "<tbody>" + "<th>Latitude:</th>" + "<td>" + event.feature.getProperty('lat') + "</td>" + "</tbody>" +
+                "<tbody>" + "<th>Longitude:</th>" + "<td>" + event.feature.getProperty('lon') + "</td>" + "</tbody>" +
+                "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href='https://www.youtube.com/watch?v=cMFHUTJ13Ys'>Can't you see meeeeeeeeeeeee</a></td>" + "</tbody>"
+
+            );
+            infowindow.setPosition(event.latLng);
+            infowindow.setOptions({
+                pixelOffset: new google.maps.Size(0, -34)
+            });
+            infowindow.open(map);
+        }
+        layer1.addListener('click', handleClicks);
 
         const infoWindow = new google.maps.InfoWindow();
 

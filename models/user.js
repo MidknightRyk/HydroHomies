@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var crypto = require('crypto')
+var bcrypt = require('bcrypt')
 var defaultDP = mongoose.Types.ObjectId('5eb0ad6fed99d767a16b1f6a')
 var userSchema = mongoose.Schema({
   username: String,
@@ -23,13 +23,13 @@ var userSchema = mongoose.Schema({
 })
 
 userSchema.methods.setPassword = function (password) {
-  this.salt = crypto.randomBytes(16).toString('hex')
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex')
+  // asynchronously generate a secure password using 10 hashing rounds
+  this.hash = bcrypt.hash(password, 10)
 }
 
 userSchema.methods.validatePassword = function (password) {
-  const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex')
-  return this.hash === hash
+  const match = bcrypt.compare(password, this.hash)
+  return match
 }
 
 mongoose.model('User', userSchema)
