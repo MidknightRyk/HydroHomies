@@ -1,27 +1,68 @@
 import React from "react";
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
+import ListGroup from 'react-bootstrap/ListGroup'
+import fountain1 from "./Links/fountain1.jpg";
+import fountain2 from "./Links/fountain2.jpg";
+import fountain3 from "./Links/fountain3.jpg";
 import "./Fountains.css";
 
 export const Fountains = () => (
 
-    <div>
-        <h1> Fountains you love</h1>
+    <div className = "fountain-images">
+        <h1 className= "fountain-title"> Fountains you love</h1>
         <br></br>
         <br></br>
 
-        <body className = "links">
-            <ol>
-            <li> <a href = "./Fountain1"> Lygon/Swanston</a></li>
-            <li> <a href = "./Fountain1"> Parkville/ bouverie</a></li>
-            <li><a href = "/.Fountain1"> Old engineering Building</a></li>
-            <li> <a href = "./Fountain1"> Union House </a> </li>
-            </ol>
-        </body>
-        <br></br>
+    <CardDeck>
+{/* create cards to show the fountain information*/}
+        <Card border = "primary">
+            <Card.Img variant="top" src={fountain1}/>
+            <Card.Body>
+            <Card.Title>Location goes here</Card.Title>
+            <ListGroup>
+                <ListGroup.Item>Refill options here</ListGroup.Item>
+            </ListGroup>
+            </Card.Body>
+            <Card.Footer>
+            <a href = "./Carousels"><small className="text-muted">Click for more information</small> </a>
+            </Card.Footer>
+        </Card>
+
+        <Card border = "primary">
+            <Card.Img variant="top" src={fountain2} />
+            <Card.Body>
+            <Card.Title>Location goes here</Card.Title>
+            <ListGroup>
+                <ListGroup.Item>Refill options here</ListGroup.Item>
+            </ListGroup>
+            </Card.Body>
+            <Card.Footer>
+            <a href = "./Carousels"> <small className="text-muted">Click for more information</small> </a>
+            </Card.Footer>
+        </Card>
+
+        <Card border = "primary">
+            <Card.Img variant="top" src={fountain3} />
+            <Card.Body>
+            <Card.Title>Location goes here</Card.Title>
+            <ListGroup>
+                <ListGroup.Item>Refill options here</ListGroup.Item>
+            </ListGroup>
+            </Card.Body>
+            <Card.Footer>
+            <a href = "./Carousels"> <small className="text-muted">Click for more information</small> </a>   
+            </Card.Footer>
+        </Card>
+
+    </CardDeck>
+
         <br></br>
 
         <div>
             <a className = 'return' href ="./Dashboard"> Return to Dashboard</a>
         </div>
+
     </div>
 
 )

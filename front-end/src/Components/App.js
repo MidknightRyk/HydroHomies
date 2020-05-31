@@ -7,6 +7,7 @@ import {ProfilePage} from "./Main/ProfilePage";
 import {Dashboard} from "./Main/Dashboard";
 import {Fountains} from "./Main/Fountains";
 import {Routes} from "./Main/Routes";
+import { Carousels } from "./Main/Carousels";
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
             <Route path = "/profilePage" component ={ProfilePage}/>
             <Route path = "/fountains" component ={Fountains}/>
             <Route path = "/routes" component = {Routes}/>
+            <Route path = "/carousels" component = {Carousels}/>
+            
           </Switch>
         </Router> 
     </React.Fragment>
