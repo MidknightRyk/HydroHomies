@@ -45,7 +45,7 @@ export const Map = React.memo(function Map() {
                 "<tbody>" + "<th>Name:</th>" + "<td>" + event.feature.getProperty('descriptio') + "</td>" + "</tbody>" +
                 "<tbody>" + "<th>Latitude:</th>" + "<td>" + event.feature.getProperty('lat') + "</td>" + "</tbody>" +
                 "<tbody>" + "<th>Longitude:</th>" + "<td>" + event.feature.getProperty('lon') + "</td>" + "</tbody>" +
-                "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href='https://www.youtube.com/watch?v=cMFHUTJ13Ys'>Can't you see meeeeeeeeeeeee</a></td>" + "</tbody>"
+                "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href = './Fountain'>More info</a></td>" + "</tbody>"
 
             );
             infowindow.setPosition(event.latLng);

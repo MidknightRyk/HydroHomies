@@ -5,6 +5,7 @@ import { Login } from "./Auth/Login";
 import { SignUp } from "./Auth/SignUp";
 import { ProfilePage } from "./Main/ProfilePage";
 import { Dashboard } from "./Main/Dashboard";
+import { Fountain } from "./Main/Fountain"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signUp" component={SignUp} />{" "}
           <Route path="/login" component={Login} />{" "}
           <Route path="/dashboard" component={Dashboard} />{" "}
+          <Route path="/fountain" component={Fountain} />{" "}
           <Route path="/profilePage" component={ProfilePage} />
         </Switch>{" "}
       </Router>{" "}
