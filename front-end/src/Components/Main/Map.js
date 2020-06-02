@@ -9,7 +9,7 @@ const data = "https://data.melbourne.vic.gov.au/resource/h4ih-tzqs.geojson";
 
 export const Map = React.memo(function Map() {
     const { ref, map, google } = useGoogleMaps(
-        "AIzaSyAhS6x_m-g8WE9QHArKO63hlMzLD5ItcCU",
+        "AIzaSyAtv2cSSylQG9URJkpiSSMmaLFx1ClMCYs",
         {
             zoom: 13,
             center: melb,
