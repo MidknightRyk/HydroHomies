@@ -88,7 +88,7 @@ export const Map = React.memo(function Map() {
                        travelMode : 'WALKING'
                    }
                     directionsService.route(request, function(result, status) {
-                        if (status == 'OK') {
+                        if (status === 'OK') {
                             directionsRenderer.setDirections(result);
                         }
                     });
