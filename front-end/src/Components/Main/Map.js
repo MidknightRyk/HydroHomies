@@ -93,21 +93,22 @@ export const Map = React.memo(function Map() {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
-    }
-    
-    if (start !== null) {
-        if (end !== null) {
-            let request = {
-                origin : start,
-                destination : end,
-                travelMode : 'WALKING'
-            }
-            directionsService.route(request, function(result, status) {
-                if (status === 'OK') {
-                    directionsRenderer.setDirections(result);
+        
+        if (start !== null) {
+            if (end !== null) {
+                let request = {
+                    origin : start,
+                    destination : end,
+                    travelMode : 'WALKING'
                 }
-            });
+                directionsService.route(request, function(result, status) {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+                    }
+                });
+            }
         }
+        
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
