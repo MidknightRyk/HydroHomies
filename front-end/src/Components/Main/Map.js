@@ -49,7 +49,7 @@ export const Map = React.memo(function Map() {
                 "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href = './Fountain'>More info</a></td>" + "</tbody>"
             );
             
-	    end = new google.maps.LatLng({ lat : event.feature.getProperty('lat'), lng : event.feature.getProperty('lon')});
+	    let end = new google.maps.LatLng({ lat : event.feature.getProperty('lat'), lng : event.feature.getProperty('lon')});
             console.log("end =" + end);
             
             infowindow.setPosition(event.latLng);
@@ -70,7 +70,7 @@ export const Map = React.memo(function Map() {
                     lng: position.coords.longitude
                 };
 
-                start = new google.maps.LatLng({ lat : pos.lat, lng : pos.lng });
+                let start = new google.maps.LatLng({ lat : pos.lat, lng : pos.lng });
                 console.log("start = " + start)
 
                 infoWindow.setPosition(pos);
@@ -88,9 +88,9 @@ export const Map = React.memo(function Map() {
         }
         
 	console.log("1 - here");
-        if (start) {
+        if (typeof start !== 'undefined') {
 	    console.log("2 - here");
-	    if (end) {
+	    if (typeof end !== 'undefined') {
 		console.log("3 - here")
 	        let directionsService = new google.maps.DirectionsService();
                 let directionsRenderer = new google.maps.DirectionsRenderer();
