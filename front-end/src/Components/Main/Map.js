@@ -92,8 +92,8 @@ export const Map = React.memo(function Map() {
         let directionsRenderer = new google.maps.DirectionsRenderer();
         directionsRenderer.setMap(map);
 	    
-        let start = new google.maps.LatLng(33.8688, 151.2093);
-        let end = new google.maps.LatLng(37.8136, 144.9631);
+        let start = new google.maps.LatLng({ lat: -33.8688, lng: 151.2093 });
+        let end = new google.maps.LatLng({ lat: -37.8136, lng: 144.9631 });
 	    let request = {
 	        origin : start,
             	destination : end,
