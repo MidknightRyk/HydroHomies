@@ -40,6 +40,9 @@ export const Map = React.memo(function Map() {
         });
         layer1.setMap(map);
 
+	let start = melb;
+	let end = melb;
+
         function handleClicks(event) {
             infowindow.setContent(
                 "<table>" +
@@ -49,7 +52,11 @@ export const Map = React.memo(function Map() {
                 "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href = './Fountain'>More info</a></td>" + "</tbody>"
             );
 
-	    let end = new google.maps.LatLng({ lat : event.feature.getProperty('lat'), lng : event.feature.getProperty('lon')});
+	    end = new google.maps.LatLng(
+		    { lat : parseInt(event.feature.getProperty('lat')),
+		      lng : parseInt(event.feature.getProperty('lon'))
+		    });
+
             console.log("end =" + end);
 
             infowindow.setPosition(event.latLng);
@@ -70,7 +77,7 @@ export const Map = React.memo(function Map() {
                     lng: position.coords.longitude
                 };
 
-                let start = new google.maps.LatLng({ lat : pos.lat, lng : pos.lng });
+                start = new google.maps.LatLng({ lat : pos.lat, lng : pos.lng });
                 console.log("start = " + start)
 
                 infoWindow.setPosition(pos);
@@ -86,27 +93,22 @@ export const Map = React.memo(function Map() {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
+        
 
-	console.log("1 - here");
-        //if (start !== undefined && start !== null) {
-	    console.log("2 - here");
-	    //if (end !== undefined && end !== null) {
-		console.log("3 - here")
-	        let directionsService = new google.maps.DirectionsService();
-                let directionsRenderer = new google.maps.DirectionsRenderer();
-                directionsRenderer.setMap(map);
+	let directionsService = new google.maps.DirectionsService();
+        let directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
 
-	        let request = {
-	            //origin : start,
-            	    //destination : end,
-            	    travelMode : 'WALKING'
-	        }
-
-                directionsService.route(request, function(result, status) {
-                    if (status == 'OK') {
-                        directionsRenderer.setDirections(result);
-                    }
-                });
+	let request = {
+	    origin : start,
+            destination : end,
+            travelMode : 'WALKING'
+	    }
+        directionsService.route(request, function(result, status) {
+            if (status == 'OK') {
+                directionsRenderer.setDirections(result);
+            }
+        });
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
