@@ -96,13 +96,17 @@ export const Map = React.memo(function Map() {
         
         if (start !== null) {
             if (end !== null) {
+                console.log("1");
                 let request = {
                     origin : start,
                     destination : end,
                     travelMode : 'WALKING'
                 }
+                console.log("request = " + request);
                 directionsService.route(request, function(result, status) {
+                    console.log("2");
                     if (status === 'OK') {
+                        console.log("3");
                         directionsRenderer.setDirections(result);
                     }
                 });
