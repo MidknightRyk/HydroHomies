@@ -42,10 +42,10 @@ export const Map = React.memo(function Map() {
         function handleClicks(event) {
             infowindow.setContent(
                 "<table>" +
-                "<tbody>" + "<th>Name:</th>" + "<td>" + event.feature.getProperty('descriptio') + "</td>" + "</tbody>" +
+                "<tbody>" + "<th>Description:</th>" + "<td>" + event.feature.getProperty('descriptio') + "</td>" + "</tbody>" +
                 "<tbody>" + "<th>Latitude:</th>" + "<td>" + event.feature.getProperty('lat') + "</td>" + "</tbody>" +
                 "<tbody>" + "<th>Longitude:</th>" + "<td>" + event.feature.getProperty('lon') + "</td>" + "</tbody>" +
-                "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href='https://www.youtube.com/watch?v=cMFHUTJ13Ys'>Can't you see meeeeeeeeeeeee</a></td>" + "</tbody>"
+                "<tbody>" + "<td><a href='/fountain/" + "'>More Info</a></td>" + "</tbody>"
 
             );
             infowindow.setPosition(event.latLng);
