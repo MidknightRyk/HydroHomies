@@ -55,6 +55,9 @@ export const Map = React.memo(function Map() {
                 "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href = './Fountain'>More info</a></td>" + "</tbody>"
             );
             end = new google.maps.LatLng(event.feature.getProperty('lat'), event.feature.getProperty('lon'));
+            
+            console.log("end =" + end);
+            
             infowindow.setPosition(event.latLng);
             infowindow.setOptions({
                 pixelOffset: new google.maps.Size(0, -34)
@@ -74,6 +77,8 @@ export const Map = React.memo(function Map() {
                 };
 
                 start = new google.maps.LatLng(pos.lat, pos.lng);
+                
+                console.log("start = " + start)
 
                 infoWindow.setPosition(pos);
                 infoWindow.setContent("You're here");
@@ -81,25 +86,27 @@ export const Map = React.memo(function Map() {
                 map.setCenter(pos);
                 console.log(pos);
 
-                if (start && end) {
-                   let request = {
-                       origin : start,
-                       destination : end,
-                       travelMode : 'WALKING'
-                   }
-                    directionsService.route(request, function(result, status) {
-                        if (status === 'OK') {
-                            directionsRenderer.setDirections(result);
-                        }
-                    });
-                }
-
             }, function() {
                 handleLocationError(true, infoWindow, map.getCenter());
             });
         } else {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
+    
+    if (start !== null) {
+        if (end !== null) {
+            let request = {
+                origin : start,
+                destination : end,
+                travelMode : 'WALKING'
+            }
+            directionsService.route(request, function(result, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(result);
+                }
+            });
         }
     }
 
