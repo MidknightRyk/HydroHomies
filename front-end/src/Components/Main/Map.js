@@ -39,6 +39,9 @@ export const Map = React.memo(function Map() {
             });
         });
         layer1.setMap(map);
+	    
+	let start = null;
+	let end = null;
 
         function handleClicks(event) {
             infowindow.setContent(
@@ -48,8 +51,8 @@ export const Map = React.memo(function Map() {
                 "<tbody>" + "<th>Longitude:</th>" + "<td>" + event.feature.getProperty('lon') + "</td>" + "</tbody>" +
                 "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href = './Fountain'>More info</a></td>" + "</tbody>"
             );
-            end = new google.maps.LatLng(event.feature.getProperty('lat'), event.feature.getProperty('lon'));
             
+	    end = new google.maps.LatLng({ lat : event.feature.getProperty('lat'), lng : event.feature.getProperty('lon')});
             console.log("end =" + end);
             
             infowindow.setPosition(event.latLng);
@@ -70,8 +73,7 @@ export const Map = React.memo(function Map() {
                     lng: position.coords.longitude
                 };
 
-                start = new google.maps.LatLng(pos.lat, pos.lng);
-                
+                start = new google.maps.LatLng({ lat : pos.lat, lng : pos.lng });
                 console.log("start = " + start)
 
                 infoWindow.setPosition(pos);
@@ -88,23 +90,25 @@ export const Map = React.memo(function Map() {
             handleLocationError(false, infoWindow, map.getCenter());
         }
         
-        let directionsService = new google.maps.DirectionsService();
-        let directionsRenderer = new google.maps.DirectionsRenderer();
-        directionsRenderer.setMap(map);
+        if (start) {
+	    if (end) {
+	        let directionsService = new google.maps.DirectionsService();
+                let directionsRenderer = new google.maps.DirectionsRenderer();
+                directionsRenderer.setMap(map);
 	    
-        let start = new google.maps.LatLng({ lat: -33.8688, lng: 151.2093 });
-        let end = new google.maps.LatLng({ lat: -37.8136, lng: 144.9631 });
-	    let request = {
-	        origin : start,
-            	destination : end,
-            	travelMode : 'WALKING'
-	    }
+	        let request = {
+	            origin : start,
+            	    destination : end,
+            	    travelMode : 'WALKING'
+	        }
         
-        directionsService.route(request, function(result, status) {
-            if (status == 'OK') {
-                directionsRenderer.setDirections(result);
-            }
-        });
+                directionsService.route(request, function(result, status) {
+                    if (status == 'OK') {
+                        directionsRenderer.setDirections(result);
+                    }
+                });
+	    }
+	}
         
     }
 
