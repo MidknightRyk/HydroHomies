@@ -19,6 +19,8 @@ export const Map = React.memo(function Map() {
 
   if (map) {
     let infowindow = new google.maps.InfoWindow();
+    let directionsService = new google.maps.DirectionsService();
+    let directionsRenderer = new google.maps.DirectionsRenderer();
 
     google.maps.event.addListener(map, "click", function() {
       infowindow.close();
@@ -69,12 +71,27 @@ export const Map = React.memo(function Map() {
           "</tbody>"
       );
 
+      directionsRenderer.setMap(null);
+
       end = new google.maps.LatLng({
-        lat: parseInt(event.feature.getProperty("lat")),
-        lng: parseInt(event.feature.getProperty("lon"))
+        lat: parseFloat(event.feature.getProperty("lat")),
+        lng: parseFloat(event.feature.getProperty("lon"))
       });
 
-      console.log("end =" + end);
+      if (start) {
+        directionsRenderer.setMap(map);
+        let request = {
+          origin: start,
+          destination: end,
+          travelMode: "WALKING"
+        };
+        directionsService.route(request, function (result, status) {
+          if (status == "OK") {
+            directionsRenderer.setDirections(result);
+          }
+        });
+      }
+
 
       infowindow.setPosition(event.latLng);
       infowindow.setOptions({
@@ -112,21 +129,6 @@ export const Map = React.memo(function Map() {
       // Browser doesn't support Geolocation
       handleLocationError(false, infoWindow, map.getCenter());
     }
-
-    let directionsService = new google.maps.DirectionsService();
-    let directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
-
-    let request = {
-      origin: start,
-      destination: end,
-      travelMode: "WALKING"
-    };
-    directionsService.route(request, function(result, status) {
-      if (status == "OK") {
-        directionsRenderer.setDirections(result);
-      }
-    });
   }
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
