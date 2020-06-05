@@ -23,9 +23,9 @@ function App() {
             <Route path = "/fountains" component ={Fountains}/>
             <Route path = "/routes" component = {Routes}/>
             <Route path = "/carousels" component = {Carousels}/>
-            
+
           </Switch>
-        </Router> 
+        </Router>
     </React.Fragment>
   );
 }

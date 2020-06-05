@@ -17,6 +17,23 @@
 	  var melb = {lat: -37.8136, lng: 144.963};
   	  var map = new google.maps.Map(
        	  document.getElementById('map'), {zoom: 9, center: melb})
+	  let directionsService = new google.maps.DirectionsService();
+          let directionsRenderer = new google.maps.DirectionsRenderer();
+          directionsRenderer.setMap(map);
+          let start = "Sydney, NSW";
+          let end = "Melbourne, VIC";
+		
+	  let request = {
+	      origin : start,
+              destination : end,
+              travelMode : 'WALKING'
+	  }
+          
+	  directionsService.route(request, function(result, status) {
+              if (status == 'OK') {
+                  directionsRenderer.setDirections(result);
+              }
+          });
 	}
     </script>
     <script async defer

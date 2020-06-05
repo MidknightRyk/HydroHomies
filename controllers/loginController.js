@@ -51,15 +51,11 @@ var login = function (req, res) {
     }
     if (user) {
       console.log('logging in')
-      // Keep user id and name in session storage
-      req.session.user = user._id
-      req.session.username = user.username
-      // Set user type
-      req.session.userType = 'user'
       return res.send({
         "user": user._id,
         "username": user.username,
         "email": user.email,
+        "displayPic": user.displayPic,
         "userType": "user"
       })
     } else {
@@ -85,7 +81,7 @@ var profile = function (req, res) {
 // Logout function
 var logout = function (req, res) {
   console.log('Logging out!')
-  req.session = null
+  res.clearCookie('userID')
   res.redirect('/')
 }
 

@@ -29,7 +29,7 @@ export const Dashboard = () => (
                </Form>
            </Navbar>
            <Card className="text-center">
-               <Map />
+               <Map className="w-auto p-3"/>
            </Card>
 
         </div>
