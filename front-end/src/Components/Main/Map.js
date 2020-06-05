@@ -39,9 +39,6 @@ export const Map = React.memo(function Map() {
             });
         });
         layer1.setMap(map);
-	    
-	let start = null;
-	let end = null;
 
         function handleClicks(event) {
             infowindow.setContent(
@@ -90,8 +87,11 @@ export const Map = React.memo(function Map() {
             handleLocationError(false, infoWindow, map.getCenter());
         }
         
+	console.log("1 - here");
         if (start) {
+	    console.log("2 - here");
 	    if (end) {
+		console.log("3 - here")
 	        let directionsService = new google.maps.DirectionsService();
                 let directionsRenderer = new google.maps.DirectionsRenderer();
                 directionsRenderer.setMap(map);
