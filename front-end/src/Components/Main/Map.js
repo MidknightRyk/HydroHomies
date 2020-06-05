@@ -52,7 +52,11 @@ export const Map = React.memo(function Map() {
                 "<tbody>" + "<th>Fountain Page:</th>" + "<td><a href = './Fountain'>More info</a></td>" + "</tbody>"
             );
             
-	    end = new google.maps.LatLng({ lat : event.feature.getProperty('lat'), lng : event.feature.getProperty('lon')});
+	    end = new google.maps.LatLng(
+		    { lat : parseInt(event.feature.getProperty('lat')),
+		      lng : parseInt(event.feature.getProperty('lon'))
+		    });
+		
             console.log("end =" + end);
             
             infowindow.setPosition(event.latLng);
