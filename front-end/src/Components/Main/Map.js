@@ -20,12 +20,6 @@ export const Map = React.memo(function Map() {
 
     if (map) {
         let infowindow = new google.maps.InfoWindow();
-        let directionsService = new google.maps.DirectionsService();
-        let directionsRenderer = new google.maps.DirectionsRenderer();
-        directionsRenderer.setMap(map);
-
-        let start;
-        let end;
 
         google.maps.event.addListener(map, 'click', function() {
             infowindow.close();
@@ -94,25 +88,22 @@ export const Map = React.memo(function Map() {
             handleLocationError(false, infoWindow, map.getCenter());
         }
         
-        console.log("0");
-        if (start) {
-            if (end) {
-                console.log("1");
-                let request = {
-                    origin : start,
-                    destination : end,
-                    travelMode : 'WALKING'
-                }
-                console.log("request = " + request);
-                directionsService.route(request, function(result, status) {
-                    console.log("2");
-                    if (status === 'OK') {
-                        console.log("3");
-                        directionsRenderer.setDirections(result);
-                    }
-                });
+        let directionsService = new google.maps.DirectionsService();
+        let directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+        let start = "Sydney, NSW";
+        let end = "Melbourne, VIC";
+	    let request = {
+	        origin : start,
+            destination : end,
+            travelMode : 'WALKING'
+	    }
+        
+        directionsService.route(request, function(result, status) {
+            if (status == 'OK') {
+                directionsRenderer.setDirections(result);
             }
-        }
+        });
         
     }
 
