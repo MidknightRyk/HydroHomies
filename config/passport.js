@@ -17,10 +17,12 @@ passport.use('user', new LocalStrategy(
 			{'username': username}
 		]}, function (err, user, res) {
 			if (!err) {
-				if (!user || !user.validatePassword(password)) {
-					return done(null, false, { errors: { 'email or password': 'is invalid' } });
-				}
-				return done(null, user);
+        console.log(user.validatePassword(password))
+				if (user.validatePassword(password) == true) {
+					return done(null, user);
+				} else {
+          return done(null, false, { errors: { 'email or password': 'is invalid' } });
+        }
 			} else {
 				throw err;
 			}
