@@ -24,8 +24,8 @@ export const Map = React.memo(function Map() {
         let directionsRenderer = new google.maps.DirectionsRenderer();
         directionsRenderer.setMap(map);
 
-        let start = null;
-        let end = null;
+        let start;
+        let end;
 
         google.maps.event.addListener(map, 'click', function() {
             infowindow.close();
@@ -94,8 +94,9 @@ export const Map = React.memo(function Map() {
             handleLocationError(false, infoWindow, map.getCenter());
         }
         
-        if (start !== null) {
-            if (end !== null) {
+        console.log("0");
+        if (start) {
+            if (end) {
                 console.log("1");
                 let request = {
                     origin : start,
