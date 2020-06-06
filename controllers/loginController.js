@@ -47,11 +47,11 @@ var login = function (req, res) {
   passport.authenticate('user', (err, user, info) => {
     if (err) {
       console.log(err)
-      return res.send({"error": err})
+      return res.status(401).send({"error": err})
     }
     if (user) {
       console.log('logging in')
-      return res.send({
+      return res.status(200).send({
         "user": user._id,
         "username": user.username,
         "email": user.email,
@@ -60,7 +60,7 @@ var login = function (req, res) {
       })
     } else {
       console.log("error: incorrect password")
-      return res.send({"error": "error"})
+      return res.status(401).send({"error": "error"})
     }
   })(req,res)
 }
