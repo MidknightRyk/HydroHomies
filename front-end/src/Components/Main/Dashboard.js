@@ -28,9 +28,9 @@ export const Dashboard = () => (
                    <Button variant="outline-primary" ><Nav.Link href="/">Logout</Nav.Link></Button>
                </Form>
            </Navbar>
-           <Card className="text-center">
-               <Map className="w-auto p-3"/>
-           </Card>
+           <Card ><Map className="map"/></Card>
+
+
 
         </div>
     )

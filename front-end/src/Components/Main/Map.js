@@ -46,29 +46,31 @@ export const Map = React.memo(function Map() {
 
     function handleClicks(event) {
       infowindow.setContent(
+          '<div id="content" style="text-align: center">'+
         "<table>" +
           "<tbody>" +
-          "<th>Name:</th>" +
           "<td>" +
           event.feature.getProperty("descriptio") +
           "</td>" +
           "</tbody>" +
           "<tbody>" +
-          "<th>Latitude:</th>" +
-          "<td>" +
+          "<td>" + "<" +
           event.feature.getProperty("lat") +
+          "," + event.feature.getProperty("lon") +
+           ">" +
           "</td>" +
           "</tbody>" +
           "<tbody>" +
-          "<th>Longitude:</th>" +
-          "<td>" +
-          event.feature.getProperty("lon") +
-          "</td>" +
-          "</tbody>" +
+
+
+
+
           "<tbody>" +
-          "<th>Fountain Page:</th>" +
-          "<td><a href = './Fountain'>More info</a></td>" +
+
+          "<td><b><a href = './Fountain' style=\"color:blue\">Fountain Page</a></b></td>" +
           "</tbody>"
+          + "</table>"
+          + "</div>"
       );
 
       directionsRenderer.setMap(null);
@@ -86,7 +88,7 @@ export const Map = React.memo(function Map() {
           travelMode: "WALKING"
         };
         directionsService.route(request, function (result, status) {
-          if (status == "OK") {
+          if (status === "OK") {
             directionsRenderer.setDirections(result);
           }
         });
@@ -143,7 +145,7 @@ export const Map = React.memo(function Map() {
 
   return (
     <div>
-      <div ref={ref} style={{ width: 1530, height: 650 }} />
+      <div ref={ref} style={{ height: 650, margin: 'auto', display: 'block' }} />
     </div>
   );
 });
