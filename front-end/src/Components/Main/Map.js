@@ -67,7 +67,7 @@ export const Map = React.memo(function Map() {
 
           "<tbody>" +
 
-          "<td><b><a href = './Fountain' style=\"color:blue\">Fountain Page</a></b></td>" +
+          "<td><b><a href = './Carousels' style=\"color:blue\">Fountain Page</a></b></td>" +
           "</tbody>"
           + "</table>"
           + "</div>"

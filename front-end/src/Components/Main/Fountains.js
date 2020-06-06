@@ -6,9 +6,16 @@ import fountain1 from "./Links/fountain1.jpg";
 import fountain2 from "./Links/fountain2.jpg";
 import fountain3 from "./Links/fountain3.jpg";
 import "./Fountains.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
 
 export const Fountains = () => (
 
+    <div className="container">
+        <Form inline>
+            <Button variant="outline-primary" ><Nav.Link href="/dashboard">Dashboard</Nav.Link></Button>
+        </Form>
     <div className = "fountain-images">
         <h1 className= "fountain-title"> Fountains you love</h1>
         <br></br>
@@ -59,10 +66,7 @@ export const Fountains = () => (
 
         <br></br>
 
-        <div>
-            <a className = 'return' href ="./Dashboard"> Return to Dashboard</a>
-        </div>
 
     </div>
-
+    </div>
 )

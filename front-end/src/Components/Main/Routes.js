@@ -5,9 +5,15 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import route1 from "./Links/route1.jpg";
 import route2 from "./Links/route2.jpg";
 import route3 from "./Links/route3.jpg";
+import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
+import Form from "react-bootstrap/Form";
 
 export const Routes = () => (
-
+    <div className="container">
+        <Form inline>
+        <Button variant="outline-primary" ><Nav.Link href="/dashboard">Dashboard</Nav.Link></Button>
+        </Form>
     <div>
         <h1> Presaved routes</h1>
         <br></br>
@@ -49,9 +55,7 @@ export const Routes = () => (
 
         <br></br>
 
-        <div >
-            <a className = "return" href = "./Dashboard"> Return to Dashbaord</a>
-        </div>
 
+    </div>
     </div>
 )
