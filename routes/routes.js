@@ -6,6 +6,7 @@ var loginController = require('../controllers/loginController.js')
 // routes imports
 var image = require('./imageRoutes.js')
 var fountain = require('./fountainRoutes.js')
+const checkAuth = require('../controllers/checkAuth');
 
 // External routes
 router.use('/images', image)
@@ -38,12 +39,12 @@ router.get('/register', function (req, res) {
 */
 
 // Get profile page
-router.get('/profile', loginController.profile)
+router.get('/profile', checkAuth, loginController.profile)
 
 /* POST requests */
 
 // Login
-router.post('/login', loginController.login)
+router.post('/login', loginController.jwt_login)
 
 // Logout
 router.post('/logout', loginController.logout)

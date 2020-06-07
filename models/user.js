@@ -55,8 +55,8 @@ validateBytePassword = function(password, hash) {
 
 userSchema.methods.validatePassword = function(password) {
   return (match =
-    validateHashPassword(password, this.salt, this.hash) ||
-    validateBytePassword(password, this.hash)
+      validateBytePassword(password, this.hash) ||
+      validateHashPassword(password, this.salt, this.hash)
       ? true
       : false);
 };
