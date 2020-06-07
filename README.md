@@ -43,8 +43,8 @@ password: demo</code>
    
 <h5>Relevant URLs:</h5>
 <ul>
-    <li><a href="https://hydrohomies.herokuapp.com/login", target="_blank">https://hydrohomies.herokuapp.com/login</a></li>
-    <li><a href="https://hydrohomies.herokuapp.com/signup", target="_blank">https://hydrohomies.herokuapp.com/signup</a></li>
+    <li><a href="https://hydrohomies.herokuapp.com/login" target="_blank">https://hydrohomies.herokuapp.com/login</a></li>
+    <li><a href="https://hydrohomies.herokuapp.com/signup" target="_blank">https://hydrohomies.herokuapp.com/signup</a></li>
 </ul>
 
 <h5>Associated Routes:</h5>
@@ -71,7 +71,7 @@ they accept the location request.</p>
 
 <h5>Relevant URL:</h5>
 <ul>
-    <li><a href="https://hydrohomies.herokuapp.com/dashboard", target="_blank">https://hydrohomies.herokuapp.com/dashboard</a></li>
+    <li><a href="https://hydrohomies.herokuapp.com/dashboard" target="_blank">https://hydrohomies.herokuapp.com/dashboard</a></li>
 </ul>
 
 <h5>Associated Routes:</h5>
@@ -89,9 +89,9 @@ After the authentication, they also have access to their profile page, their sav
 
 <h5>Relevant URL:</h5>
 <ul>
-        <li><a href="https://hydrohomies.herokuapp.com/carousels", target="_blank">Individual fountain page</a></li>
-        <li><a href="https://hydrohomies.herokuapp.com/fountains", target="_blank">Saved fountains</a></li>
-        <li><a href="https://hydrohomies.herokuapp.com/routes", target="_blank">Presaved routes</a></li>
+        <li><a href="https://hydrohomies.herokuapp.com/carousels" target="_blank">Individual fountain page</a></li>
+        <li><a href="https://hydrohomies.herokuapp.com/fountains" target="_blank">Saved fountains</a></li>
+        <li><a href="https://hydrohomies.herokuapp.com/routes" target="_blank">Presaved routes</a></li>
 </ul>
 
 <h5>Associated Routes:</h5>
