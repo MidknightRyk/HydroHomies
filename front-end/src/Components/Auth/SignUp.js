@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react"
 import axios from 'axios';
+import './SignUp.css';
 import { useHistory } from 'react-router-dom';
 
 export const SignUp = () => {
@@ -50,6 +51,9 @@ export const SignUp = () => {
         <div>
             <div className="form-container">
                 <h1 className="mb-5">Account Setup</h1>
+                <div className="form">
+                    <br/><br/>
+
                 <div className="form-group">
                     <label htmlFor="name"> First Name</label>
                     <input type="text" className="form-control" name="firstname" placeholder="First Name"
@@ -84,6 +88,7 @@ export const SignUp = () => {
                     >Create account</button>
                     <br></br>
                     <a href='./Login'> <b> Already have an account? </b></a>
+                </div>
                 </div>
 
             </div>

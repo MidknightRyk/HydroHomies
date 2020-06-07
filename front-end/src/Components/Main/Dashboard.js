@@ -11,8 +11,8 @@ import Card from "react-bootstrap/Card";
 export const Dashboard = () => (
        
        <div>
-           <Navbar bg="light" expand="lg">
-               <Navbar.Brand href="/dashboard">Hydrohomies</Navbar.Brand>
+           <Navbar bg="primary" variant="dark" expand="lg">
+               <Navbar.Brand href="/dashboard" >Hydrohomies</Navbar.Brand>
                <Navbar.Toggle aria-controls="basic-navbar-nav" />
                <Navbar.Collapse id="basic-navbar-nav">
                    <Nav className="mr-auto">
@@ -23,14 +23,19 @@ export const Dashboard = () => (
                            <NavDropdown.Item href="./Routes">Routes</NavDropdown.Item>
                        </NavDropdown>
                    </Nav>
+
                </Navbar.Collapse>
+
                <Form inline>
-                   <Button variant="outline-primary" ><Nav.Link href="/">Logout</Nav.Link></Button>
+                   <Button variant="outline-light" ><Nav.Link href="/">Logout</Nav.Link></Button>
                </Form>
            </Navbar>
-           <Card className="text-center">
-               <Map className="w-auto p-3"/>
+           <Card >
+               <h6 style={{textAlign: 'center', color: '#007bff'}}>(Click on the blue Marker to get direction from your current location.)</h6>
+           <Map className="map"/>
            </Card>
+
+
 
         </div>
     )

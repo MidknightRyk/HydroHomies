@@ -5,16 +5,24 @@ import fountain2 from "./Links/fountain2.jpg";
 import fountain3 from "./Links/fountain3.jpg";
 import Carousel from 'react-bootstrap/Carousel';
 import "./Carousel.css";
+import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
+import Form from "react-bootstrap/Form";
 
 export const Carousels = () =>{
 
     const [isClick, setClick] = useState(false);
 
     return(
+        <div className="main">
+            <Form inline>
+                <Button variant="outline-primary" ><Nav.Link href="/dashboard">Dashboard</Nav.Link></Button>
+            </Form>
         
         <div ClassName = "container-fluid">
             <h1 ClassName = "fountain-title"> Fountain name goes here</h1>
-            <br></br>
+
+
 
     {/*create a table to hold the carousel images */}
         <table className = "table-border">
@@ -66,8 +74,8 @@ export const Carousels = () =>{
             </tr>
         </table>
 
-        <a className ="return" href = "./Dashboard"> Return to the Dashboard</a>
 
+        </div>
         </div>
     )
 }

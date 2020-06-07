@@ -1,25 +1,6 @@
 # HydroHomies
 
-<h2><b>Deliverable 3</b></h2>
-
-In the project directory, you can run:
-
-### `npm install`
-
-Installs all the dependencies to ensure the running of the app on localhost.<br />
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
 <h3><a href="https://hydrohomies.herokuapp.com/">Live Website</h3>
-
-<h3>Core Functionalities</h3>
-<ul>
-  <li>Authentication (Login/Sign up)</li>
-  <li>Map with location service and fountains' coordinates display</li>
-</ul>
 
 <br>
 

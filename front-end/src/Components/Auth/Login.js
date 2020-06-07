@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Login.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import ReactCSSTransitionGroup from 'react-transition-group';
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,8 @@ export const Login = () => {
   const [helperText, setHelperText] = useState("");
   const [error, setError] = useState(false);
   const history = useHistory();
+
+
 
   useEffect(() => {
     if (username.trim() && password.trim()) {
@@ -50,7 +53,10 @@ export const Login = () => {
     <div>
       <div className="form-container">
         <h1 className="login">Log In </h1>
-        <br></br>
+      <br/>
+      <div className="form">
+        <br/> <br/> <br/>
+        <br/>
         <div className="form-group">
           <label htmlFor="username"> User Name </label>
           <input
@@ -78,6 +84,7 @@ export const Login = () => {
             required
           />
         </div>
+        <br/>
         <div className="text-center">
           <button
             className="btn btn-primary btn-lg"
@@ -86,10 +93,12 @@ export const Login = () => {
           >
             Log In
           </button>
-          <br></br>
+          <br/>
+
           <a href="./SignUp">
             <b> Create a new account</b>
           </a>
+        </div>
         </div>
       </div>
       <br></br>
