@@ -71,7 +71,7 @@ var jwt_login = function (req, res) {
   User.findOne({ email: req.body.email })
       .exec()
       .then(user => {
-        if (user.length < 1) {
+        if (!user) {
           return res.status(401).json({
             message: "Auth failed, user not found"
           });
@@ -95,7 +95,8 @@ var jwt_login = function (req, res) {
             );
             return res.status(200).json({
               message: "Auth successful",
-              token: token
+              token: token,
+              user_id: user._id
             });
           }
           res.status(401).json({
@@ -113,14 +114,17 @@ var jwt_login = function (req, res) {
 
 // Retrieve profile
 var profile = function (req, res) {
-  var userID = (req.session.user)
+  var userID = (req.body.user_id)
   User.findById(userID)
     .exec((err, user) => {
       if (err) return console.log(err)
 
-      res.sendFile(path.join(__dirname, '/../views/profile.html'), {
-        //user: user,
-        //lastVisit: user.lastVisit
+      res.status(200).send({
+        "user": user._id,
+        "username": user.username,
+        "email": user.email,
+        "displayPic": user.displayPic,
+        "userType": "user"
       })
     })
 }
