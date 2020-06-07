@@ -55,10 +55,7 @@ validateBytePassword = function(password, hash) {
 
 userSchema.methods.validatePassword = function(password) {
   return (match =
-      validateBytePassword(password, this.hash) ||
-      validateHashPassword(password, this.salt, this.hash)
-      ? true
-      : false);
+      validateBytePassword(password, this.hash));
 };
 
 mongoose.model("User", userSchema);
