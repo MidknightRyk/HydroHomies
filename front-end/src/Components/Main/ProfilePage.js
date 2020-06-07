@@ -4,14 +4,22 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import axios from "axios";
 import buffer from "buffer";
-import json from "axios-jsonp";
 global.Buffer = buffer.Buffer;
 
 export const ProfilePage = () => {
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   const [currentImage, setCurrentImage] = React.useState("");
-  const [userData, setUserData] = React.useState("");
+  const [userData, setUserData] = React.useState({
+    username: "",
+    email: "",
+    hash: "",
+    salt: "",
+    location: "",
+    lastVisit: "",
+    dateJoined: "",
+    displayPic: ""
+  });
 
   const handleImageUpload = e => {
     const [file] = e.target.files;
@@ -26,38 +34,43 @@ export const ProfilePage = () => {
     }
   };
 
-  const data = JSON.parse(localStorage.getItem("user"));
-  axios({
-    method: "GET",
-    url: "/profile/" + data.user_id,
-    responseType: jsonp,
-    headers: {
-      authorization: "Bearer <JWT_TOKEN>".replace("<JWT_TOKEN>", data.token)
-    }
-  })
-    .then(function(response) {
-      //console.log(response.data);
-      if (response.status === 200) {
-        const user = response.data;
-        setUserData({username: parsed_json['username']});
-        setUserData({displayPic: parsed_json['displayPic']});
-        setUserData({email: parsed_json['email']});
-      } else {
-        return response.data;
+  const getUser = () => {
+    const data = JSON.parse(localStorage.getItem("user"));
+    axios({
+      method: "GET",
+      url: "/profile/" + data.user_id,
+      headers: {
+        authorization: "Bearer <JWT_TOKEN>".replace("<JWT_TOKEN>", data.token)
       }
     })
-    .catch(function(error) {
-      return error;
-    });
+        .then(function (response) {
+          //console.log(response.data);
+          if (response.status === 200) {
+            const user = response.data;
+            console.log(user);
+            setUserData(user);
+          } else {
+            return response.data;
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
 
-  axios({
-    method: "get",
-    url: "/images/" + userData.displayPic,
-    responseType: "arraybuffer"
-  }).then(function(response) {
-    const dp = Buffer.from(response.data, "binary").toString("base64");
-    setCurrentImage({ source: "data:image/png;base64," + dp });
-  });
+  const getDP = () => {
+    axios({
+      method: "get",
+      url: "/images/" + userData.displayPic,
+      responseType: "arraybuffer"
+    }).then(function (response) {
+      const dp = Buffer.from(response.data, "binary").toString("base64");
+      setCurrentImage({source: "data:image/png;base64," + dp});
+    });
+  }
+
+  getUser();
+  getDP();
 
   return (
     <div className="Table">
@@ -90,10 +103,10 @@ export const ProfilePage = () => {
             </td>{" "}
           </tr>{" "}
           <tr>
-            <td> Username </td> <td> {userData.userData.username} </td>{" "}
+            <td> Username </td> <td> {userData.username} </td>{" "}
           </tr>{" "}
           <tr>
-            <td> Email </td> <td> {userData.userData.email} </td>{" "}
+            <td> Email </td> <td> {userData.email} </td>{" "}
           </tr>{" "}
         </tbody>{" "}
       </Table>{" "}
