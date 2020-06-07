@@ -20,6 +20,7 @@
   "homepage": "https://github.com/MidknightRyk/HydroHomies#readme",
   "dependencies": {
     "async": "^3.2.0",
+    "axios-jsonp": "^1.0.4",
     "bcrypt": "^4.0.1",
     "body-parser": "latest",
     "chai": "^4.2.0",

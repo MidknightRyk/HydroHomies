@@ -119,7 +119,7 @@ var jwt_login = async (req, res) => {
 // Retrieve profile
 var profile = function(req, res) {
   var userID = req.params.user_id;
-  console.log(req)
+  //console.log(req)
   User.findById(userID).exec((err, user) => {
     if (err) {
       console.log(err);
@@ -127,7 +127,7 @@ var profile = function(req, res) {
         "error": err
       })
     }
-    console.log(user)
+    //console.log(user)
     res.status(200).send(user);
   });
 };

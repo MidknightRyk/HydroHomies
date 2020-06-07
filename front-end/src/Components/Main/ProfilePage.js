@@ -4,12 +4,14 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import axios from "axios";
 import buffer from "buffer";
+import json from "axios-jsonp";
 global.Buffer = buffer.Buffer;
 
 export const ProfilePage = () => {
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   const [currentImage, setCurrentImage] = React.useState("");
+  const [userData, setUserData] = React.useState("");
 
   const handleImageUpload = e => {
     const [file] = e.target.files;
@@ -24,20 +26,22 @@ export const ProfilePage = () => {
     }
   };
 
-  let user;
   const data = JSON.parse(localStorage.getItem("user"));
   axios({
     method: "GET",
     url: "/profile/" + data.user_id,
+    responseType: jsonp,
     headers: {
       authorization: "Bearer <JWT_TOKEN>".replace("<JWT_TOKEN>", data.token)
     }
   })
     .then(function(response) {
-      console.log(response.data);
+      //console.log(response.data);
       if (response.status === 200) {
-        const userData = response.data;
-        user = userData;
+        const user = response.data;
+        setUserData({username: parsed_json['username']});
+        setUserData({displayPic: parsed_json['displayPic']});
+        setUserData({email: parsed_json['email']});
       } else {
         return response.data;
       }
@@ -45,11 +49,10 @@ export const ProfilePage = () => {
     .catch(function(error) {
       return error;
     });
-  console.log("check check", user);
 
   axios({
     method: "get",
-    url: "/images/" + user.displayPic,
+    url: "/images/" + userData.displayPic,
     responseType: "arraybuffer"
   }).then(function(response) {
     const dp = Buffer.from(response.data, "binary").toString("base64");
@@ -87,10 +90,10 @@ export const ProfilePage = () => {
             </td>{" "}
           </tr>{" "}
           <tr>
-            <td> Username </td> <td> {user.username} </td>{" "}
+            <td> Username </td> <td> {userData.userData.username} </td>{" "}
           </tr>{" "}
           <tr>
-            <td> Email </td> <td> {user.email} </td>{" "}
+            <td> Email </td> <td> {userData.userData.email} </td>{" "}
           </tr>{" "}
         </tbody>{" "}
       </Table>{" "}
