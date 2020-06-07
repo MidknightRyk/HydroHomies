@@ -2,7 +2,7 @@
 
 <h3><a href="https://hydrohomies.herokuapp.com/">Live Website</h3>
 
-<br>
+
 <h3>Core Functionalities</h3>
 <ul>
         <li>
@@ -43,12 +43,12 @@ password: demo</code>
    
 <h5>Relevant URLs:</h5>
 <ul>
-    <li>https://hydrohomies.herokuapp.com/login </li>
-    <li>https://hydrohomies.herokuapp.com/signup </li>
+    <li><a href="https://hydrohomies.herokuapp.com/login", target="_blank">https://hydrohomies.herokuapp.com/login</a></li>
+    <li><a href="https://hydrohomies.herokuapp.com/signup", target="_blank">https://hydrohomies.herokuapp.com/signup</a></li>
 </ul>
 
 <h5>Associated Routes:</h5>
-```   
+   
       HydroHomies
       ├── controllers
       │   ├── checkAuth.js
@@ -62,7 +62,7 @@ password: demo</code>
       │       └── SignUp.js
       └──  routes
           └── routes.js
-```
+
 
 <h4>Google Maps</h4>
 <p>This functionality uses Google Maps APIs to fetch all the fountain data to display on the map provided as markers.
@@ -71,17 +71,17 @@ they accept the location request.</p>
 
 <h5>Relevant URL:</h5>
 <ul>
-    <li>https://hydrohomies.herokuapp.com/dashboard </li>
+    <li><a href="https://hydrohomies.herokuapp.com/dashboard", target="_blank">https://hydrohomies.herokuapp.com/dashboard</a></li>
 </ul>
 
 <h5>Associated Routes:</h5>
-```   
+   
       HydroHomies
       └── front-end
           └── src/Components/Main       
               ├── Map.js
               └── Dashboard.js
-```
+
 
 <h4>User-related</h4>
 <p>This functionality allows user to check the individual fountains' page when clicking on the fountain marker. 
@@ -89,13 +89,13 @@ After the authentication, they also have access to their profile page, their sav
 
 <h5>Relevant URL:</h5>
 <ul>
-    <li>https://hydrohomies.herokuapp.com/carousels </li>
-     <li>https://hydrohomies.herokuapp.com/fountains </li>
-      <li>https://hydrohomies.herokuapp.com/routes </li>
+        <li><a href="https://hydrohomies.herokuapp.com/carousels", target="_blank">Individual fountain page</a></li>
+        <li><a href="https://hydrohomies.herokuapp.com/fountains", target="_blank">Saved fountains</a></li>
+        <li><a href="https://hydrohomies.herokuapp.com/routes", target="_blank">Presaved routes</a></li>
 </ul>
 
 <h5>Associated Routes:</h5>
-```   
+   
       HydroHomies
       ├── controllers
       │   ├── checkAuth.js
@@ -116,4 +116,3 @@ After the authentication, they also have access to their profile page, their sav
           ├── fountainRoute.js
           ├── imageRoute.js
           └── routes.js
-```
