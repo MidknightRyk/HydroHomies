@@ -26,6 +26,7 @@ var userSchema = mongoose.Schema({
 userSchema.methods.validatePassword = function(password) {
   bcrypt.compare(password, this.hash, function(err, result) {
     if (err) console.log(err);
+    console.log(result);
     return result;
   });
 };

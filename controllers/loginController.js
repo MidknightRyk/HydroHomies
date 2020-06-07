@@ -80,7 +80,7 @@ var jwt_login = async (req, res) => {
     });
   }
 
-  if (!Bcrypt.compareSync(req.body.pwd, user.hash)) {
+  if (!bcrypt.compareSync(req.body.pwd, user.hash)) {
     return res.status(401).json({
       message: "Auth failed, password failed"
     });
@@ -91,7 +91,8 @@ var jwt_login = async (req, res) => {
       email: user.email,
       userId: user._id
     },
-    process.env.JWT_KEY,
+    // process.env.JWT_KEY,
+    "hydrohomies",
     {
       expiresIn: "1h"
     }
@@ -114,16 +115,16 @@ var jwt_login = async (req, res) => {
 // Retrieve profile
 var profile = function(req, res) {
   var userID = req.body.user_id;
+  console.log(req)
   User.findById(userID).exec((err, user) => {
-    if (err) return console.log(err);
-
-    res.status(200).send({
-      user: user._id,
-      username: user.username,
-      email: user.email,
-      displayPic: user.displayPic,
-      userType: "user"
-    });
+    if (err) {
+      console.log(err);
+      res.status(401).send({
+        "error": err
+      })
+    }
+    console.log(user)
+    res.status(200).send(user);
   });
 };
 
