@@ -25,24 +25,20 @@ export const ProfilePage = () => {
   };
 
   const getUser = () => {
-    user = JSON.parse(localStorage.getItem("user"))
-    console.log(user)
+    const data = JSON.parse(localStorage.getItem("user"))
     axios({
       method: "GET",
-      url: "/profile",
+      url: "/profile/" + data.user_id,
       headers: {
-        "authorization": "Bearer <JWT_TOKEN>".replace("<JWT_TOKEN>", user.token)
+        "authorization": "Bearer <JWT_TOKEN>".replace("<JWT_TOKEN>", data.token)
       },
-      data: {
-        user_id: user.user_id
-      }
     })
         .then(function(response) {
           console.log(response)
           if (response.status === 200) {
-            return response.data.body
+            return response.data
           } else {
-            return response.data.body
+            return response.data
           }
         })
         .catch(function(error) {
@@ -51,7 +47,7 @@ export const ProfilePage = () => {
   }
 
   let user;
-  user = getUser()
+  user = getUser();
 
   console.log(user)
 

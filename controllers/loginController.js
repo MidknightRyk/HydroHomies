@@ -114,7 +114,7 @@ var jwt_login = async (req, res) => {
 
 // Retrieve profile
 var profile = function(req, res) {
-  var userID = req.body.user_id;
+  var userID = req.params.user_id;
   console.log(req)
   User.findById(userID).exec((err, user) => {
     if (err) {

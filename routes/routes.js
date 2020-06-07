@@ -39,7 +39,7 @@ router.get('/register', function (req, res) {
 */
 
 // Get profile page
-router.get('/profile', loginController.profile)
+router.get('/profile/:user_id', checkAuth, loginController.profile)
 
 /* POST requests */
 
