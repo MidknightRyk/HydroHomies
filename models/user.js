@@ -23,23 +23,6 @@ var userSchema = mongoose.Schema({
   }
 });
 
-userSchema.methods.setPassword = function(password) {
-  this.hash = 0;
-  var hashtmp;
-  // asynchronously generate a secure password using 10 hashing rounds
-  bcrypt.hash(password, 10, function(err, hash) {
-    if (err)
-      console.log(err);
-    console.log(hash)
-    hashtmp = hash;
-    console.log("hshtmp", hashtmp);
-  });
-  console.log("hashtmp", hashtmp);
-  this.hash = hashtmp;
-  console.log("stored", this.hash);
-};
-
-
 userSchema.methods.validatePassword = function(password) {
   bcrypt.compare(password, this.hash, function(err, result) {
     if (err) console.log(err);

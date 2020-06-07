@@ -1,143 +1,145 @@
 // Code for reset functionality adapted from:
 // http://sahatyalkabov.com/how-to-implement-password-reset-in-nodejs/
 
-var mongoose = require('mongoose')
-var User = mongoose.model('User')
-var path = require('path')
-var passport = require('passport')
+var mongoose = require("mongoose");
+var User = mongoose.model("User");
+var path = require("path");
+var passport = require("passport");
 const jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
 
 // Registration function
-var register = function (req, res) {
+var register = function(req, res) {
   // If email is not registered
 
   User.findOne({
     email: req.body.email
-  }).then(function (user) {
+  }).then(function(user) {
     if (user) {
       // req.flash('error', 'That user already exists!')
-      console.log('user exists')
-      return res.status(401).send({"error": 'That user already exists!'})
+      console.log("user exists");
+      return res.status(401).send({ error: "That user already exists!" });
     } else {
       // If username is not taken
       User.findOne({
         username: req.body.name
-      }).then(function (name) {
+      }).then(async name => {
         if (name) {
           // req.flash('error', 'Username taken!')
-          console.log('username taken')
-          return res.status(401).send({"error": 'Username taken!'})
+          console.log("username taken");
+          res.status(401).send({ error: "Username taken!" });
         } else {
-          // Create new user and redirect to awaiting approval page
+          var hashtmp;
+          // asynchronously generate a secure password using 10 hashing rounds
+          hashtmp = bcrypt.hashSync(req.body.pwd, 10);
           var user = new User({
             username: req.body.username,
-            email: req.body.email
-          })
-          console.log(req.body)
-          user.setPassword(req.body.pwd)
-          return user.save()
-            .then(() => res.status(200).send("success"))
-      }
-      })
+            email: req.body.email,
+            hash: hashtmp
+          });
+
+          let result = await user.save();
+          console.log(result);
+          res.status(200).send(result);
+        }
+      });
     }
-  })
-}
+  });
+};
 
 // Login function
-var login = function (req, res) {
-  passport.authenticate('user', (err, user, info) => {
+var login = function(req, res) {
+  passport.authenticate("user", (err, user, info) => {
     if (err) {
-      console.log(err)
-      return res.status(401).send({"error": err})
+      console.log(err);
+      return res.status(401).send({ error: err });
     }
     if (user) {
-      console.log('logging in')
+      console.log("logging in");
       return res.status(200).send({
-        "user": user._id,
-        "username": user.username,
-        "email": user.email,
-        "displayPic": user.displayPic,
-        "userType": "user"
-      })
+        user: user._id,
+        username: user.username,
+        email: user.email,
+        displayPic: user.displayPic,
+        userType: "user"
+      });
     } else {
-      console.log("error: incorrect password")
-      return res.status(401).send({"error": "error"})
+      console.log("error: incorrect password");
+      return res.status(401).send({ error: "error" });
     }
-  })(req,res)
-}
+  })(req, res);
+};
 
-var jwt_login = function (req, res) {
+var jwt_login = function(req, res) {
   User.findOne({ email: req.body.email })
-      .exec()
-      .then(user => {
-        if (!user) {
+    .exec()
+    .then(user => {
+      if (!user) {
+        return res.status(401).json({
+          message: "Auth failed, user not found"
+        });
+      }
+      user.validatePassword(req.body.pwd, (err, result) => {
+        if (err) {
           return res.status(401).json({
-            message: "Auth failed, user not found"
+            message: "Auth failed, password failed"
           });
         }
-        user.validatePassword(req.body.pwd, (err, result) => {
-          if (err) {
-            return res.status(401).json({
-              message: "Auth failed, password failed"
-            });
-          }
-          if (result) {
-            const token = jwt.sign(
-                {
-                  email: user.email,
-                  userId: user._id
-                },
-                process.env.JWT_KEY,
-                {
-                  expiresIn: "1h"
-                }
-            );
-            return res.status(200).json({
-              message: "Auth successful",
-              token: token,
-              user_id: user._id
-            });
-          }
-          res.status(401).json({
-            message: "Auth failed"
+        if (result) {
+          const token = jwt.sign(
+            {
+              email: user.email,
+              userId: user._id
+            },
+            process.env.JWT_KEY,
+            {
+              expiresIn: "1h"
+            }
+          );
+          return res.status(200).json({
+            message: "Auth successful",
+            token: token,
+            user_id: user._id
           });
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          error: err
+        }
+        res.status(401).json({
+          message: "Auth failed"
         });
       });
-}
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+};
 
 // Retrieve profile
-var profile = function (req, res) {
-  var userID = (req.body.user_id)
-  User.findById(userID)
-    .exec((err, user) => {
-      if (err) return console.log(err)
+var profile = function(req, res) {
+  var userID = req.body.user_id;
+  User.findById(userID).exec((err, user) => {
+    if (err) return console.log(err);
 
-      res.status(200).send({
-        "user": user._id,
-        "username": user.username,
-        "email": user.email,
-        "displayPic": user.displayPic,
-        "userType": "user"
-      })
-    })
-}
+    res.status(200).send({
+      user: user._id,
+      username: user.username,
+      email: user.email,
+      displayPic: user.displayPic,
+      userType: "user"
+    });
+  });
+};
 
 // Logout function
-var logout = function (req, res) {
-  console.log('Logging out!')
-  res.clearCookie('userID')
-  res.redirect('/')
-}
+var logout = function(req, res) {
+  console.log("Logging out!");
+  res.clearCookie("userID");
+  res.redirect("/");
+};
 
-module.exports.login = login
-module.exports.register = register
-module.exports.profile = profile
-module.exports.logout = logout
-module.exports.jwt_login = jwt_login
+module.exports.login = login;
+module.exports.register = register;
+module.exports.profile = profile;
+module.exports.logout = logout;
+module.exports.jwt_login = jwt_login;
