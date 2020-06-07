@@ -3,42 +3,117 @@
 <h3><a href="https://hydrohomies.herokuapp.com/">Live Website</h3>
 
 <br>
+<h3>Core Functionalities</h3>
+<ul>
+        <li>
+        <h4>Authentication</h4>
+        <ul>
+        <li>Login</li>
+        <li>Sign Up</li>
+        </ul>
+        </li>
+       <li>
+       <h4>Google Maps</h4>
+       <ul>
+       <li>View all fountain locations</li>
+       <li>Display current location</li>
+       <li>Direction service from current location to each fountain</li>
+       </ul>
+       </li>
+       <li>
+           <h4>User-related</h4>
+           <ul>
+           <li>Check fountain page</li>
+           <li>Check saved fountains and routes</li>
+           <li>Check profile</li>
+           </ul>
+           </li>
+</ul>
 
-<h2>Summary of the Proposal</h2>
-<p>The system that we intend to design is a web app that will not only show where the water fountains are on the given area of a map but direct you to either the closest one or one of your choice with GPS like interface. The web app will also include information about each water fountain such as: bottle refill option, accessibility, user reviews, timestamp of your last visit, etc. <br> <br>
-The app will also provide an interface for people to plan their journey while incorporating water fountain stops on the way. This will be helpful for people who would like to add a water stop in their plan for their day out. The final plan can also be shared to social media, friends, or various outlets, which can also work in part as a safety function to let people know where you'll be.
-</p>
+<h3>Details</h3>
+<h4>Authentication</h4>
+<p>This functionality gives users ability to register a account or log in our website. 
+Authentication is required if a user wants to access any information on the website.
 
-<h2>Marks Breakdown</h2>
-<table style="width:100%">
-  <tr>
-    <th>Due Week</th>
-    <th>Due Date</th>
-    <th>Deliverable</th>
-    <th>Weight</th>
-  </tr>
-  <tr> 
-    <td>4</td>
-    <td>Sunday, Apr 5 @5pm</td>
-    <td>Project Proposal</td>
-    <td>5%</td>
-  </tr> 
-  <tr>
-    <td>7</td>
-    <td>Sunday, May 10 @5pm</td>
-    <td>Mockup App Server</td>
-    <td>10%</td>
-  </tr>
-  <tr>
-    <td>9</td>
-    <td>Sunday, May 17 @5pm</td>
-    <td>Front-End + API Server</td>
-    <td>25%</td>
-  </tr>
-  <tr>
-    <td>12</td>  
-    <td>Sunday, Jun 7 @5pm</td> 
-    <td>Report + System</td>  
-    <td>20% + 40%</td> 
-  </tr>
-</table>
+Below is the demo login detail.</p>
+<pre>
+<code>username: demo
+password: demo</code>
+</pre>
+   
+<h5>Relevant URLs:</h5>
+<ul>
+    <li>https://hydrohomies.herokuapp.com/login </li>
+    <li>https://hydrohomies.herokuapp.com/signup </li>
+</ul>
+
+<h5>Associated Routes:</h5>
+```   
+      HydroHomies
+      ├── controllers
+      │   ├── checkAuth.js
+      │   └── loginController.js
+      ├── models
+      │   ├── user.js
+      │   └── db.js
+      ├── front-end
+      │   └── src/Components/Auth       
+      │       ├── Login.js
+      │       └── SignUp.js
+      └──  routes
+          └── routes.js
+```
+
+<h4>Google Maps</h4>
+<p>This functionality uses Google Maps APIs to fetch all the fountain data to display on the map provided as markers.
+When the user clicks on the marker, the map will show them the route between their current location to the water fountain, provided that
+they accept the location request.</p>
+
+<h5>Relevant URL:</h5>
+<ul>
+    <li>https://hydrohomies.herokuapp.com/dashboard </li>
+</ul>
+
+<h5>Associated Routes:</h5>
+```   
+      HydroHomies
+      └── front-end
+          └── src/Components/Main       
+              ├── Map.js
+              └── Dashboard.js
+```
+
+<h4>User-related</h4>
+<p>This functionality allows user to check the individual fountains' page when clicking on the fountain marker. 
+After the authentication, they also have access to their profile page, their saved fountain page and saved route page.</p>
+
+<h5>Relevant URL:</h5>
+<ul>
+    <li>https://hydrohomies.herokuapp.com/carousels </li>
+     <li>https://hydrohomies.herokuapp.com/fountains </li>
+      <li>https://hydrohomies.herokuapp.com/routes </li>
+</ul>
+
+<h5>Associated Routes:</h5>
+```   
+      HydroHomies
+      ├── controllers
+      │   ├── checkAuth.js
+      │   ├── imageController.js
+      │   └── fountainController.js
+      ├── models
+      │   ├── image.js
+      │   ├── fountain.js
+      │   ├── user.js
+      │   └── db.js
+      ├── front-end
+      │   └── src/Components/Main       
+      │       ├── Carousels.js
+      │       ├── ProfilePage.js
+      │       ├── Fountains.js
+      │       └── Routes.js
+      └──  routes
+          ├── fountainRoute.js
+          ├── imageRoute.js
+          └── routes.js
+```
