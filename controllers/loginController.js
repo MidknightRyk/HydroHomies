@@ -72,15 +72,18 @@ var login = function(req, res) {
 };
 */
 var jwt_login = async (req, res) => {
-  var user = await User.findOne({ email: req.body.email }).exec();
-  console.log()
+  console.log(req.body);
+  var user =
+    (await User.findOne({ username: req.body.username }).exec()) ||
+    (await User.findOne({ email: req.body.username }).exec());
+  console.log(user);
   if (!user) {
     return res.status(401).json({
       message: "Auth failed, user not found"
     });
   }
 
-  if (!Bcrypt.compareSync(req.body.pwd, user.hash)) {
+  if (!bcrypt.compareSync(req.body.pwd, user.hash)) {
     return res.status(401).json({
       message: "Auth failed, password failed"
     });
@@ -121,8 +124,7 @@ var profile = function(req, res) {
       user: user._id,
       username: user.username,
       email: user.email,
-      displayPic: user.displayPic,
-      userType: "user"
+      displayPic: user.displayPic
     });
   });
 };
