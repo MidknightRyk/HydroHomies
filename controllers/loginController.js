@@ -48,6 +48,7 @@ var register = function(req, res) {
 };
 
 // Login function
+/*
 var login = function(req, res) {
   passport.authenticate("user", (err, user, info) => {
     if (err) {
@@ -69,43 +70,38 @@ var login = function(req, res) {
     }
   })(req, res);
 };
+*/
+var jwt_login = async (req, res) => {
+  var user = await User.findOne({ email: req.body.email }).exec();
+  console.log()
+  if (!user) {
+    return res.status(401).json({
+      message: "Auth failed, user not found"
+    });
+  }
 
-var jwt_login = function(req, res) {
-  User.findOne({ email: req.body.email })
-    .exec()
-    .then(user => {
-      if (!user) {
-        return res.status(401).json({
-          message: "Auth failed, user not found"
-        });
-      }
-      user.validatePassword(req.body.pwd, (err, result) => {
-        if (err) {
-          return res.status(401).json({
-            message: "Auth failed, password failed"
-          });
-        }
-        if (result) {
-          const token = jwt.sign(
-            {
-              email: user.email,
-              userId: user._id
-            },
-            process.env.JWT_KEY,
-            {
-              expiresIn: "1h"
-            }
-          );
-          return res.status(200).json({
-            message: "Auth successful",
-            token: token,
-            user_id: user._id
-          });
-        }
-        res.status(401).json({
-          message: "Auth failed"
-        });
-      });
+  if (!Bcrypt.compareSync(req.body.pwd, user.hash)) {
+    return res.status(401).json({
+      message: "Auth failed, password failed"
+    });
+  }
+
+  const token = jwt.sign(
+    {
+      email: user.email,
+      userId: user._id
+    },
+    process.env.JWT_KEY,
+    {
+      expiresIn: "1h"
+    }
+  );
+  return res
+    .status(200)
+    .json({
+      message: "Auth successful",
+      token: token,
+      user_id: user._id
     })
     .catch(err => {
       console.log(err);
@@ -138,7 +134,6 @@ var logout = function(req, res) {
   res.redirect("/");
 };
 
-module.exports.login = login;
 module.exports.register = register;
 module.exports.profile = profile;
 module.exports.logout = logout;
