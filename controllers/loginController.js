@@ -5,6 +5,8 @@ var mongoose = require('mongoose')
 var User = mongoose.model('User')
 var path = require('path')
 var passport = require('passport')
+const jwt = require("jsonwebtoken");
+var bcrypt = require("bcrypt");
 
 // Registration function
 var register = function (req, res) {
@@ -14,18 +16,18 @@ var register = function (req, res) {
     email: req.body.email
   }).then(function (user) {
     if (user) {
-      req.flash('error', 'That user already exists!')
+      // req.flash('error', 'That user already exists!')
       console.log('user exists')
-      return res.send({"error": 'That user already exists!'})
+      return res.status(401).send({"error": 'That user already exists!'})
     } else {
       // If username is not taken
       User.findOne({
         username: req.body.name
       }).then(function (name) {
         if (name) {
-          req.flash('error', 'Username taken!')
+          // req.flash('error', 'Username taken!')
           console.log('username taken')
-          return res.send({"error": 'Username taken!'})
+          return res.status(401).send({"error": 'Username taken!'})
         } else {
           // Create new user and redirect to awaiting approval page
           var user = new User({
@@ -35,7 +37,7 @@ var register = function (req, res) {
           console.log(req.body)
           user.setPassword(req.body.pwd)
           return user.save()
-            .then(() => res.send("success"))
+            .then(() => res.status(200).send("success"))
       }
       })
     }
@@ -65,16 +67,64 @@ var login = function (req, res) {
   })(req,res)
 }
 
+var jwt_login = function (req, res) {
+  User.findOne({ email: req.body.email })
+      .exec()
+      .then(user => {
+        if (!user) {
+          return res.status(401).json({
+            message: "Auth failed, user not found"
+          });
+        }
+        user.validatePassword(req.body.pwd, (err, result) => {
+          if (err) {
+            return res.status(401).json({
+              message: "Auth failed, password failed"
+            });
+          }
+          if (result) {
+            const token = jwt.sign(
+                {
+                  email: user.email,
+                  userId: user._id
+                },
+                process.env.JWT_KEY,
+                {
+                  expiresIn: "1h"
+                }
+            );
+            return res.status(200).json({
+              message: "Auth successful",
+              token: token,
+              user_id: user._id
+            });
+          }
+          res.status(401).json({
+            message: "Auth failed"
+          });
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+}
+
 // Retrieve profile
 var profile = function (req, res) {
-  var userID = (req.session.user)
+  var userID = (req.body.user_id)
   User.findById(userID)
     .exec((err, user) => {
       if (err) return console.log(err)
 
-      res.sendFile(path.join(__dirname, '/../views/profile.html'), {
-        //user: user,
-        //lastVisit: user.lastVisit
+      res.status(200).send({
+        "user": user._id,
+        "username": user.username,
+        "email": user.email,
+        "displayPic": user.displayPic,
+        "userType": "user"
       })
     })
 }
@@ -90,3 +140,4 @@ module.exports.login = login
 module.exports.register = register
 module.exports.profile = profile
 module.exports.logout = logout
+module.exports.jwt_login = jwt_login

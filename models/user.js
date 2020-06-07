@@ -39,26 +39,12 @@ userSchema.methods.setPassword = function(password) {
   console.log("stored", this.hash);
 };
 
-validateHashPassword = function(password, salt, hash) {
-  const check = crypto
-    .pbkdf2Sync(password, salt, 10000, 512, "sha512")
-    .toString("hex");
-  return hash === check;
-};
 
-validateBytePassword = function(password, hash) {
-  bcrypt.compare(password, hash, function(err, result) {
+userSchema.methods.validatePassword = function(password) {
+  bcrypt.compare(password, this.hash, function(err, result) {
     if (err) console.log(err);
     return result;
   });
-};
-
-userSchema.methods.validatePassword = function(password) {
-  return (match =
-    validateHashPassword(password, this.salt, this.hash) ||
-    validateBytePassword(password, this.hash)
-      ? true
-      : false);
 };
 
 mongoose.model("User", userSchema);
