@@ -24,13 +24,38 @@ export const ProfilePage = () => {
     }
   };
 
-  console.log(localStorage);
+  const getUser = () => {
+    user = JSON.parse(localStorage.getItem("user"))
+    console.log("userinfo=", JSON.parse(localStorage.getItem("user")))
+    axios({
+      method: "GET",
+      url: "/profile",
+      headers: {
+        "authorization": "Bearer <JWT_TOKEN>".replace("<JWT_TOKEN>", user.token)
+      },
+      data: {
+        user_id: user.user_id
+      }
+    })
+        .then(function(response) {
+          console.log(response)
+          if (response.status === 200) {
+            return response.data.body
+          } else {
+            return response.data.body
+          }
+        })
+        .catch(function(error) {
+          return error
+        });
+  }
 
   let user;
-  user = JSON.parse(localStorage.getItem("user"));
+  user = getUser()
 
+  console.log("check check", user)
 
-  axios({
+  /*axios({
     method: 'get',
     url: '/images/' + user.displayPic,
     responseType: 'arraybuffer'
@@ -38,9 +63,7 @@ export const ProfilePage = () => {
       const dp = Buffer.from(response.data, 'binary').toString('base64')
       setCurrentImage({ source: "data:image/png;base64," + dp })
     });
-
-
-
+    */
 
   return (
     <div className="Table">
