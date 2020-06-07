@@ -3,13 +3,13 @@ import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import axios from "axios";
-import buffer from 'buffer';
-global.Buffer = buffer.Buffer
+import buffer from "buffer";
+global.Buffer = buffer.Buffer;
 
 export const ProfilePage = () => {
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
-  const [currentImage, setCurrentImage] = React.useState('');
+  const [currentImage, setCurrentImage] = React.useState("");
 
   const handleImageUpload = e => {
     const [file] = e.target.files;
@@ -24,41 +24,37 @@ export const ProfilePage = () => {
     }
   };
 
-  const getUser = () => {
-    const data = JSON.parse(localStorage.getItem("user"))
-    axios({
-      method: "GET",
-      url: "/profile/" + data.user_id,
-      headers: {
-        "authorization": "Bearer <JWT_TOKEN>".replace("<JWT_TOKEN>", data.token)
-      },
-    })
-        .then(function(response) {
-          console.log(response)
-          if (response.status === 200) {
-            return response.data
-          } else {
-            return response.data
-          }
-        })
-        .catch(function(error) {
-          return error
-        });
-  }
-
   let user;
-  user = getUser();
-
-  console.log(user)
+  const data = JSON.parse(localStorage.getItem("user"));
+  axios({
+    method: "GET",
+    url: "/profile/" + data.user_id,
+    headers: {
+      authorization: "Bearer <JWT_TOKEN>".replace("<JWT_TOKEN>", data.token)
+    }
+  })
+    .then(function(response) {
+      console.log(response.data);
+      if (response.status === 200) {
+        const userData = response.data;
+        user = userData;
+      } else {
+        return response.data;
+      }
+    })
+    .catch(function(error) {
+      return error;
+    });
+  console.log("check check", user);
 
   axios({
-    method: 'get',
-    url: '/images/' + user.displayPic,
-    responseType: 'arraybuffer'
-    }).then(function (response) {
-      const dp = Buffer.from(response.data, 'binary').toString('base64')
-      setCurrentImage({ source: "data:image/png;base64," + dp })
-    });
+    method: "get",
+    url: "/images/" + user.displayPic,
+    responseType: "arraybuffer"
+  }).then(function(response) {
+    const dp = Buffer.from(response.data, "binary").toString("base64");
+    setCurrentImage({ source: "data:image/png;base64," + dp });
+  });
 
   return (
     <div className="Table">
@@ -76,7 +72,7 @@ export const ProfilePage = () => {
                   ref={imageUploader}
                 />{" "}
                 <Image
-                  src= {currentImage.source}
+                  src={currentImage.source}
                   rounded
                   onClick={() => imageUploader.current.click()}
                   ref={uploadedImage}
