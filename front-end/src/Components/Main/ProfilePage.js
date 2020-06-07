@@ -55,7 +55,7 @@ export const ProfilePage = () => {
 
   console.log("check check", user)
 
-  /*axios({
+  axios({
     method: 'get',
     url: '/images/' + user.displayPic,
     responseType: 'arraybuffer'
@@ -63,7 +63,6 @@ export const ProfilePage = () => {
       const dp = Buffer.from(response.data, 'binary').toString('base64')
       setCurrentImage({ source: "data:image/png;base64," + dp })
     });
-    */
 
   return (
     <div className="Table">

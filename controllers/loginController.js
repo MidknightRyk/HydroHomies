@@ -26,6 +26,7 @@ var register = function(req, res) {
       }).then(async name => {
         if (name) {
           // req.flash('error', 'Username taken!')
+          console.log(name)
           console.log("username taken");
           res.status(401).send({ error: "Username taken!" });
         } else {
